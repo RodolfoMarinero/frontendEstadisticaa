@@ -1,0 +1,17 @@
+<app-header></app-header>
+<div id="main" class="container">
+  <ul class="nav nav-tabs">
+    <li class="nav-item">
+      <a class="nav-link" routerLink="medidas_descriptivas" routerLinkActive="active">medidas descriptivas</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" routerLink="medidas_asociativas" routerLinkActive="active">medidas asociativas</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link disabled" aria-disabled="true">proximamente...</a>
+    </li>
+  </ul>
+  <div class="col-md-10 mx-auto">
+    <router-outlet></router-outlet>
+  </div>
+</div>
