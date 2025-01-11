@@ -1,3 +1,59 @@
 
-<app-recolector-de-datos [cantidadDeMuestras]="1"></app-recolector-de-datos>
-<p>medidas-descriptivas works!</p>
+<app-recolector-de-datos [cantidadDeMuestras]="1" (onCalcular)="dispersarResultados($event)"></app-recolector-de-datos>
+<div class="container mb-2">
+    <h3 class="text-center">Tabla de Medidas Descriptivas</h3>
+    <table class="table table-bordered">
+      <thead class="thead-dark">
+        <tr>
+          <th>Medida</th>
+          <th>Valor</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Media</td>
+          <td>{{ medidas.media }}</td>
+        </tr>
+        <tr>
+          <td>Mediana</td>
+          <td>{{ medidas.mediana }}</td>
+        </tr>
+        <tr>
+          <td>Moda</td>
+          <td>{{ medidas.moda.length ? medidas.moda.join(', ') : 'Sin moda' }}</td>
+        </tr>
+        <tr>
+          <td>Varianza</td>
+          <td>{{ medidas.varianza }}</td>
+        </tr>
+        <tr>
+          <td>Desviación Estándar</td>
+          <td>{{ medidas.desviacionEstandar }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div>
+    <h3 class="text-center">Gráficos</h3>
+    <div class="d-flex justify-content-center">
+        <div class="chart-container">
+            <img src="https://via.placeholder.com/400x300?text=Histograma+Placeholder" alt="Histograma Placeholder">
+        </div>
+        <div class="chart-container">
+            <img src="https://via.placeholder.com/400x300?text=Boxplot+Placeholder" alt="Boxplot Placeholder">
+        </div>
+        <div class="chart-container">
+            <img src="https://via.placeholder.com/400x300?text=Scatterplot+Placeholder" alt="Scatterplot Placeholder">
+        </div>
+  </div>
+  <div>
+    <h3 class="text-center">Resumen</h3>
+    <p class="text-center">El conjunto de datos tiene un tamaño de {{datos.length}} elementos.</p>
+    <div class="d-flex justify-content-center">
+    @for (dato of datos; track $index) {
+    
+        <p class="text-center">{{dato.data}}</p>
+    }
+    </div>
+  </div>
+  

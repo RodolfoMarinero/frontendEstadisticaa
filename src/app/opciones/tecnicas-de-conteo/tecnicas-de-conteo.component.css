@@ -1,0 +1,76 @@
+#calculadora-combinaciones-permutaciones {
+    font-family: Arial, sans-serif;
+    background-color: white;
+    padding: 20px;
+    border-radius: 8px;
+    width: 300px;
+    margin: 0 auto;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+  #calculadora-combinaciones-permutaciones {
+    font-family: Arial, sans-serif;
+    background-color: white;
+    padding: 20px;
+    border-radius: 8px;
+    width: 300px;  /* Tamaño predeterminado para pantallas pequeñas */
+    margin: 0 auto;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Media query para pantallas más grandes */
+@media (min-width: 768px) {
+    #calculadora-combinaciones-permutaciones {
+        width: 500px; /* Aumento el tamaño en pantallas más grandes */
+        padding: 30px; /* Aumento el padding para un mejor espaciado */
+    }
+}
+
+@media (min-width: 1024px) {
+    #calculadora-combinaciones-permutaciones {
+        width: 600px; /* Aumento el tamaño aún más en pantallas más grandes */
+        padding: 40px; /* Aumento el padding para mayor amplitud */
+    }
+}
+
+  #calculadora-combinaciones-permutaciones h2 {
+    text-align: center;
+    color: #333;
+  }
+
+  .formulario {
+    margin-bottom: 15px;
+  }
+
+  .formulario label {
+    font-size: 14px;
+    color: black;
+  }
+
+  .formulario input {
+    width: 100%;
+    padding: 8px;
+    margin-top: 5px;
+    border: 1px solid black;
+    border-radius: 5px;
+    font-size: 16px;
+  }
+
+  .botones {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .botones button {
+    padding: 10px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+    width: 48%;
+  }
+
+  #resultado {
+    margin-top: 20px;
+    text-align: center;
+    font-size: 18px;
+    color: #333;
+  }

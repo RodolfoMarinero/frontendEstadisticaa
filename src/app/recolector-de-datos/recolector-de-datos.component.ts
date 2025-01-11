@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 
 @Component({
@@ -12,6 +12,8 @@ import { FormsModule } from '@angular/forms';
 export class RecolectorDeDatosComponent {
   // Usamos un setter para actualizar las muestras cuando cambia la cantidad
   private _cantidadDeMuestras: number = 0;
+  @Output() onCalcular: EventEmitter<Muestra[]> = new EventEmitter();
+
 
   @Input()
   set cantidadDeMuestras(value: number) {
@@ -23,7 +25,7 @@ export class RecolectorDeDatosComponent {
     return this._cantidadDeMuestras;
   }
 
-  muestras: { id: number; data: string[] }[] = [];
+  muestras: Muestra[] = [];
 
   updateCollections(): void {
     this.muestras = Array.from({ length: this.cantidadDeMuestras }, (_, i) => ({
@@ -34,7 +36,7 @@ export class RecolectorDeDatosComponent {
 
   addData(collectionId: number): void {
     const collection = this.muestras.find((c) => c.id === collectionId);
-    collection?.data.push(''); // Agrega un nuevo dato vacío
+    collection?.data.push(0); // Agrega un nuevo dato vacío
   }
 
   removeData(collectionId: number, index: number): void {
@@ -42,8 +44,16 @@ export class RecolectorDeDatosComponent {
     collection?.data.splice(index, 1); // Elimina el dato por índice
   }
 
+  
   calcular(): void {
-    console.log(this.muestras);
-    alert('Se hizo la magia, chingao.');
-  }
+  console.log(this.muestras);
+  alert('Se hizo la magia, chingao.');
+  this.muestras=[{ id: 1, data: [1, 2, 3,5,6 ,3,1,5,7,9,521,14,18] }];
+  this.onCalcular.emit(this.muestras); // Emite las muestras al componente padre
 }
+
+}
+export interface Muestra { 
+  id: number;
+  data: number[];
+};
