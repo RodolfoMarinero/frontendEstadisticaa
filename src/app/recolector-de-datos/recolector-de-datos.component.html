@@ -1,0 +1,37 @@
+<div class="container my-5">
+    <h2 class="text-center">Recopilación de Datos Muestrales</h2>
+    <p class="text-center text-muted">
+      Elige la manera de agregar tus datos muestrales
+    </p>
+  
+    @for (collection of muestras; track $index) {
+    <div class="justify-content-beetwen p-3 my-3">
+      <h5>Datos {{ collection.id }}</h5>
+      <div class="d-flex gap-2">
+          <button
+            class="btn btn-outline-primary"
+            (click)="addData(collection.id)"
+        >
+            Importar desde xls
+        </button>
+        <button
+            class="btn btn-outline-primary"
+            (click)="addData(collection.id)"
+        >
+            Importar desde API
+        </button>
+        <button
+            class="btn btn-outline-primary"
+            (click)="addData(collection.id)"
+        >
+            Ingresar datos manualmente
+        </button>
+      </div>
+      
+    </div>
+    }
+    <div class="text-center">
+      <button class="btn btn-outline-success" (click)="calcular()">Calcular</button>
+    </div>
+  </div>
+  
