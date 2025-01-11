@@ -10,5 +10,5 @@ import { RouterModule } from '@angular/router';
   styleUrl: './layout-page.component.css'
 })
 export class LayoutPageComponent {
-
+  
 }

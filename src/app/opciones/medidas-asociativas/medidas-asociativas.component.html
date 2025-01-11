@@ -1,2 +1,36 @@
-<app-recolector-de-datos [cantidadDeMuestras]="2"></app-recolector-de-datos>
-<p>medidas-asociativas works!</p>
+<app-recolector-de-datos [cantidadDeMuestras]="2" (onCalcular)="dispersarResultados($event)"></app-recolector-de-datos>
+<div class="container mb-2">
+    <h3 class="text-center">Tabla de Medidas Asociativas</h3>
+    <table class="table table-bordered">
+      <thead class="thead-dark">
+        <tr>
+          <th>Medida</th>
+          <th>Valor</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Correlacion</td>
+          <td>{{ medidas.correlacion }}</td>
+        </tr>
+        <tr>
+          <td>Covarianza</td>
+          <td>{{ medidas.covarianza }}</td>
+        </tr>
+        <tr>
+          <td>Coeficiente de correlación</td>
+          <td>{{ medidas.coeficienteCorrelacion }}</td>
+      </tbody>
+    </table>
+  </div>
+  <div>
+    <h3 class="text-center">Resumen</h3>
+    <p class="text-center">El conjunto de datos tiene un tamaño de {{datos[0].data.length}} elementos.</p>
+    <div class="d-flex justify-content-center">
+    @for (dato of datos; track $index) {
+    
+        <p class="text-center">{{dato.data}}</p>
+    }
+    </div>
+  </div>
+
