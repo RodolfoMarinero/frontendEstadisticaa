@@ -1,10 +1,10 @@
 import {ChangeDetectorRef, Component} from '@angular/core';
 import {RouterLink, RouterLinkActive, RouterOutlet} from '@angular/router';
-import {DataContainerComponent} from '../data-container/data-container.component';
+import {DataContainerComponent} from '../herramientass/data-container/data-container.component';
 
 @Component({
   selector: 'app-calculadora',
-  imports: [
+  imports:[
     RouterLink,
     RouterLinkActive,
     RouterOutlet,
@@ -19,8 +19,8 @@ export class CalculadoraComponent {
 
   // Datos para cada pestaña
   dataSets: { [key: string]: string[] } = {
-    medidas_descriptivas: ['Elemento 1', 'Elemento 2', 'Elemento 3'],
-    medidas_asociativas: ['Dato A', 'Dato B', 'Dato C'],
+    medidas_descriptivas: ['1', '2', '3'],
+    medidas_asociativas: ['1', '2', '3'],
     tecnicas_conteo: ['Técnica 1', 'Técnica 2', 'Técnica 3'],
   };
 

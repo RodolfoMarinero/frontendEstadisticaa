@@ -37,3 +37,7 @@ body {
 .content ul li {
   margin: 10px 0;
 }
+
+a {
+  cursor: pointer;
+}

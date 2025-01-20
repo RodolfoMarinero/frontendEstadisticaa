@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { Muestra, RecolectorDeDatosComponent } from '../../recolector-de-datos/recolector-de-datos.component';
+import { Muestra, RecolectorDeDatosComponent } from '../../herramientass/recolector-de-datos/recolector-de-datos.component';
 
 @Component({
   selector: 'app-medidas-descriptivas',

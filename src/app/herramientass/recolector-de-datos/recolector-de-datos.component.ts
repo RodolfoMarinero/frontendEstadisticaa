@@ -48,8 +48,7 @@ export class RecolectorDeDatosComponent {
   calcular(): void {
   console.log(this.muestras);
   alert('Se hizo la magia, chingao.');
-  this.muestras=[{ id: 1, data: [1, 2, 3,5,6 ,3,1,5,7,9,521,14,18] }];
-  this.onCalcular.emit(this.muestras); // Emite las muestras al componente padre
+  this.onCalcular.emit([{ id: 1, data: [1, 2, 3,5,6 ,3,1,5,7,9,521,14,18] }]); // Emite las muestras al componente padre
 }
 
 }

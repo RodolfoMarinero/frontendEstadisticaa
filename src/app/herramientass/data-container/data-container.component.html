@@ -1,16 +1,14 @@
 <div class="card shadow-sm">
-
   <div class="card-header bg-success text-white text-center">
     <h5 class="mb-0">{{ title }}</h5>
   </div>
   <div class="card-body">
-    <ul class="list-group">
-      @for(item of data;track item){
-        <li class="list-group-item d-flex align-items-center">
-          <span class="badge bg-primary me-3">{{ data.indexOf(item) + 1 }}</span>
-          <span>{{ item }}</span>
-        </li>}
-    </ul>
+    <div class="d-grid" style="grid-template-columns: repeat(auto-fit, minmax(30px, 1fr)); gap: 10px;">
+      @for(item of data; track item){
+        <div class="p-3 border text-center rounded bg-light">
+          {{ item }}
+        </div>}
+    </div>
   </div>
   <div class="card-footer text-muted text-center">
     Total: {{ data.length }} elementos
