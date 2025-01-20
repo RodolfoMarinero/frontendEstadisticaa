@@ -3,7 +3,7 @@
     <p class="text-center text-muted">
       Elige la manera de agregar tus datos muestrales
     </p>
-  
+
     @for (collection of muestras; track $index) {
     <div class="justify-content-beetwen p-3 my-3">
       <h5>Datos {{ collection.id }}</h5>
@@ -12,7 +12,7 @@
             class="btn btn-outline-primary"
             (click)="addData(collection.id)"
         >
-            Importar desde xls
+            Importar desde CSV
         </button>
         <button
             class="btn btn-outline-primary"
@@ -27,11 +27,10 @@
             Ingresar datos manualmente
         </button>
       </div>
-      
+
     </div>
     }
     <div class="text-center">
       <button class="btn btn-outline-success" (click)="calcular()">Calcular</button>
     </div>
   </div>
-  

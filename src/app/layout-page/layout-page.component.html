@@ -1,20 +1,17 @@
 <app-header></app-header>
 <div id="main" class="container">
-  <ul class="nav nav-tabs">
-    <li class="nav-item">
-      <a class="nav-link" routerLink="medidas_descriptivas" routerLinkActive="active">Medidas descriptivas</a>
-    </li>
-    <li class="nav-item">
-      <a class="nav-link" routerLink="medidas_asociativas" routerLinkActive="active">Medidas asociativas</a>
-    </li>
-    <li class="nav-item">
-      <a class="nav-link" routerLink="tecnicas_conteo" routerLinkActive="active">Técnicas de conteo</a>
-    </li>
-    <li class="nav-item">
-      <a class="nav-link disabled" aria-disabled="true">proximamente...</a>
-    </li>
-  </ul>
-  <div class="col-md-10 mx-auto">
-    <router-outlet></router-outlet>
+
+  <div class="row">
+    <div class="col-3">
+
+    </div>
+    <div class="col-6">
+      <router-outlet></router-outlet>
+    </div>
+
+    <div class="col-3">
+
+
+    </div>
   </div>
 </div>

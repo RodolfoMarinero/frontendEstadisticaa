@@ -6,6 +6,7 @@ import { LayoutPageComponent } from './layout-page/layout-page.component';
   selector: 'app-root',
   imports: [LayoutPageComponent],
   templateUrl: './app.component.html',
+  standalone: true,
   styleUrl: './app.component.css'
 })
 export class AppComponent {
