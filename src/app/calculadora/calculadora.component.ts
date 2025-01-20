@@ -20,7 +20,7 @@ export class CalculadoraComponent {
   // Datos para cada pestaña
   dataSets: { [key: string]: string[] } = {
     medidas_descriptivas: ['Elemento 1', 'Elemento 2', 'Elemento 3'],
-    medidas_asociativas: ['Dato A', 'Dato B', 'Dato C'],
+    medidas_asociativas: ['Dato A1', 'Dato B1', 'Dato C1','Dato A2', 'Dato B2', 'Dato C2'],
     tecnicas_conteo: ['Técnica 1', 'Técnica 2', 'Técnica 3'],
   };
 
