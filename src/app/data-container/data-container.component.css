@@ -1,0 +1,21 @@
+.card {
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.card-header {
+  font-weight: bold;
+}
+
+.list-group-item {
+  transition: background-color 0.3s, transform 0.2s;
+}
+
+.list-group-item:hover {
+  background-color: #f8f9fa;
+  transform: translateX(5px);
+}
+
+.badge {
+  font-size: 14px;
+}

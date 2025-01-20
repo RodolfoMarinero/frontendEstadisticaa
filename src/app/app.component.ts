@@ -11,4 +11,5 @@ import { LayoutPageComponent } from './layout-page/layout-page.component';
 })
 export class AppComponent {
   title = 'frontendEstadistica';
+
 }

@@ -1,16 +1,48 @@
-<div>
-  <ul class="nav nav-tabs">
-    <li class="nav-item">
-      <a class="nav-link" routerLink="medidas_descriptivas" routerLinkActive="active">Medidas descriptivas</a>
-    </li>
-    <li class="nav-item">
-      <a class="nav-link" routerLink="medidas_asociativas" routerLinkActive="active">Medidas asociativas</a>
-    </li>
-    <li class="nav-item">
-      <a class="nav-link" routerLink="tecnicas_conteo" routerLinkActive="active">Técnicas de conteo</a>
-    </li>
-  </ul>
-  <div>
-    <router-outlet></router-outlet>
+<div class="row gx-3" style="height: 100vh; background: linear-gradient(120deg, #f4f4f9, #e8f5e9);">
+  <!-- Columna izquierda con tarjetas -->
+  <div class="col-3 d-flex flex-column justify-content-around">
+      <app-data-container [title]="titles[activeTab]"
+                          [data]="dataSets[activeTab]"></app-data-container>
+  </div>
+
+  <!-- Columna central -->
+  <div class="col-6 d-flex align-items-center">
+    <div class="w-100" style="padding: 20px; background-color: #ffffff; border-radius: 15px; box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);">
+      <ul class="nav nav-tabs justify-content-center" style="border-bottom: 2px solid #28a745;">
+        <li class="nav-item">
+          <a class="nav-link"
+             routerLink="medidas_descriptivas"
+             routerLinkActive="active"
+             [class.active]="activeTab === 'medidas_descriptivas'"
+             (click)="changeTab('medidas_descriptivas')"
+             style="font-weight: bold; color: #333; padding: 10px 20px; transition: 0.3s;">Medidas descriptivas</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link"
+             routerLink="medidas_asociativas"
+             routerLinkActive="active"
+             [class.active]="activeTab === 'medidas_asociativas'"
+             (click)="changeTab('medidas_asociativas')"
+             style="font-weight: bold; color: #333; padding: 10px 20px; transition: 0.3s;">Medidas asociativas</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link"
+             routerLink="tecnicas_conteo"
+             routerLinkActive="active"
+             [class.active]="activeTab === 'tecnicas_conteo'"
+             (click)="changeTab('tecnicas_conteo')"
+             style="font-weight: bold; color: #333; padding: 10px 20px; transition: 0.3s;">Técnicas de conteo</a>
+        </li>
+      </ul>
+
+      <div style="margin-top: 20px;">
+        <router-outlet></router-outlet>
+      </div>
+    </div>
+  </div>
+
+  <!-- Columna derecha con tarjetas -->
+  <div class="col-3 d-flex flex-column justify-content-around">
+
   </div>
 </div>

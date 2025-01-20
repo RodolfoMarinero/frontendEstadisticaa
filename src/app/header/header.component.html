@@ -1,22 +1,25 @@
-<header class="bg-light border-bottom ">
-    <div class="container py-3 fondo-encabezado">
-        <div class="row align-items-center">
-            <!-- Logo -->
-            <div class="col-md-2 text-center">
-                <img src="https://www.unpa.edu.mx/web/sites/default/files/escudos/04-UNPA_small.png" alt="UNPA Logo" class="img-fluid" height="70px" width="70px">
-            </div>
-            <!-- Title -->
-            <div class="col-md-8 text-center">
-                <h1 class="h3 text-success">S.U.P.R.O.E</h1>
-                <p class="mb-0">Sistema de la UNPA para resolver operaciones estadísticas</p>
-            </div>
-            <!-- Login and Register -->
-            <div class="col-md-2 text-end">
-              <button class="btn btn-success" routerLink="portada">Inicio</button>
-                <button class="btn btn-success">Sobre nosotros</button>
-            </div>
-        </div>
+<header class="bg-light border-bottom">
+  <div class="container py-2 fondo-encabezado">
+    <div class="row align-items-center">
+      <!-- Logo -->
+      <div class="col-2 text-center">
+        <img src="https://www.unpa.edu.mx/web/sites/default/files/escudos/04-UNPA_small.png"
+             alt="UNPA Logo" class="img-fluid" style="height: 50px; width: 50px;">
+      </div>
+      <!-- Title -->
+      <div class="col-8 text-center">
+        <h1 class="h5 text-success mb-0">S.U.P.R.O.E</h1>
+        <p class="small text-muted mb-0">Sistema de la UNPA para resolver operaciones estadísticas</p>
+      </div>
+      <!-- Navigation Buttons -->
+      <div class="col-2 text-end">
+        <button
+          class="btn btn-success btn-sm m-3"
+          (click)="navigateToPortada()">
+          Inicio
+        </button>
+        <button class="btn btn-success btn-sm" routerLink="/nosotros">Sobre nosotros</button>
+      </div>
     </div>
+  </div>
 </header>
-
-
