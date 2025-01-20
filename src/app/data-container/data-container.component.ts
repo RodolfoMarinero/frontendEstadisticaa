@@ -9,4 +9,7 @@ import {Component, Input} from '@angular/core';
 export class DataContainerComponent {
   @Input() title: string = '';
   @Input() data: string[] = [];
+  ngOnChanges() {
+    console.log('DynamicCardComponent updated:', this.title, this.data);
+  }
 }

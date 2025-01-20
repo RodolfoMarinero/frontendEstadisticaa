@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import {ChangeDetectorRef, Component} from '@angular/core';
 import {RouterLink, RouterLinkActive, RouterOutlet} from '@angular/router';
 import {DataContainerComponent} from '../data-container/data-container.component';
 
@@ -30,9 +30,12 @@ export class CalculadoraComponent {
     tecnicas_conteo: 'Datos para Técnicas de Conteo',
   };
 
+  constructor(private cdr: ChangeDetectorRef) {}
+
   changeTab(tab: string) {
-    console.log(`Changing tab to: ${tab}`);
     this.activeTab = tab;
+    this.cdr.detectChanges(); // Fuerza la detección de cambios
+    console.log(`Changing tab to: ${tab}`);
   }
 
 
