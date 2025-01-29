@@ -1,61 +1,42 @@
-@if (title !== 'Datos para Técnicas de Conteo'){
 <div class="card shadow-sm">
   <div class="card-header bg-success text-white text-center">
     <h5 class="mb-0">{{ title }}</h5>
   </div>
-  <div class="card-body">
-    <div class="d-grid" style="grid-template-columns: repeat(auto-fit, minmax(30px, 1fr)); gap: 10px;">
-      @for(item of data; track item){
-        <div class="p-3 border text-center rounded bg-light">
-          {{ item }}
-        </div>}
-    </div>
 
-  <!-- Contenido para Medidas Descriptivas -->
-  @if (title === 'Datos para Medidas Descriptivas') {
-  <div class="card-body" >
-    <ul class="list-group">
-      @for(item of data;track item){
-      <li class="list-group-item d-flex align-items-center">
-        <span class="badge bg-primary me-3">{{data.indexOf(item) + 1}}</span>
-        <span>{{ item }}</span>
-      </li>
-      }
-    </ul>
-  </div>
-  }
-
-  <!-- Contenido para otras opciones -->
-  @if (title !== 'Datos para Medidas Descriptivas'){
   <div class="card-body">
-    <div class="row">
-      <div class="col-6">
-        <ul class="list-group">
-          @for (item of data; track item){
-          <li class="list-group-item d-flex align-items-center">
-            <span class="badge bg-primary me-3">{{data.indexOf(item) + 1}}</span>
-            <span>{{ item }}</span>
-          </li>
+    <!-- Verificar si los datos son asociativos (bidimensionales) -->
+    @if (isAssociative()) {
+      <table class="table table-bordered">
+        <thead>
+          <tr>
+            @for (header of data[0]; track header) {
+              <th>{{ header }}</th>
+            }
+          </tr>
+        </thead>
+        <tbody>
+          @for (row of data.slice(1); track row) {
+            <tr>
+              @for (cell of row; track cell) {
+                <td>{{ cell }}</td>
+              }
+            </tr>
           }
-        </ul>
+        </tbody>
+      </table>
+    } @else {
+      <!-- Renderizar datos simples -->
+      <div class="d-grid" style="grid-template-columns: repeat(auto-fit, minmax(30px, 1fr)); gap: 10px;">
+        @for (item of data ; track item) {
+          <div class="p-3 border text-center rounded bg-light">
+            {{ item }}
+          </div>
+        }
       </div>
-      <hr>
-      <div class="col-6">
-        <ul class="list-group">
-          @for (item of data;track item){
-          <li class="list-group-item d-flex align-items-center">
-            <span class="badge bg-primary me-3">{{data.indexOf(item) + 1}}</span>
-            <span>{{ item }}</span>
-          </li>
-          }
-        </ul>
-      </div>
-    </div>
+    }
   </div>
-  }
 
   <div class="card-footer text-muted text-center">
     Total: {{ data.length }} elementos
   </div>
 </div>
-}

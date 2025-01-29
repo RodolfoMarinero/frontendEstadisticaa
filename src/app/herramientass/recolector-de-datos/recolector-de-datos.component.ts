@@ -5,54 +5,72 @@ import { FormsModule } from '@angular/forms';
 @Component({
   selector: 'app-recolector-de-datos',
   standalone: true,
-  imports: [CommonModule, FormsModule], // Agrega los módulos necesarios
+  imports: [CommonModule, FormsModule],
   templateUrl: './recolector-de-datos.component.html',
-  styleUrls: ['./recolector-de-datos.component.css'], // Cambia 'styleUrl' por 'styleUrls'
+  styleUrls: ['./recolector-de-datos.component.css'],
 })
 export class RecolectorDeDatosComponent {
-  // Usamos un setter para actualizar las muestras cuando cambia la cantidad
-  private _cantidadDeMuestras: number = 0;
   @Output() onCalcular: EventEmitter<Muestra[]> = new EventEmitter();
 
-
+  private _cantidadDeMuestras: number = 0;
   @Input()
   set cantidadDeMuestras(value: number) {
     this._cantidadDeMuestras = value;
-    this.updateCollections(); // Llama al método cada vez que cambia la cantidad
+    this.updateCollections();
   }
-
   get cantidadDeMuestras(): number {
     return this._cantidadDeMuestras;
   }
 
   muestras: Muestra[] = [];
+  datosManuales: { [key: number]: string } = {}; // Almacena datos manuales por colección
+  modoIngresoManual: { [key: number]: boolean } = {}; // Controla el modo de ingreso manual
 
   updateCollections(): void {
     this.muestras = Array.from({ length: this.cantidadDeMuestras }, (_, i) => ({
       id: i + 1,
-      data: this.muestras[i]?.data || [], // Mantiene datos existentes si hay una reducción
+      data: this.muestras[i]?.data || [],
     }));
   }
 
-  addData(collectionId: number): void {
+  importarDesdeCSV(collectionId: number): void {
+    // Simulación de importación desde CSV
+    alert(`Importando datos desde CSV para la colección ${collectionId}`);
+  }
+
+  importarDesdeAPI(collectionId: number): void {
+    // Simulación de importación desde API
+    alert(`Importando datos desde API para la colección ${collectionId}`);
+  }
+
+  ingresarManual(collectionId: number): void {
+    this.modoIngresoManual[collectionId] = true;
+  }
+
+  guardarDatosManuales(collectionId: number): void {
+    const datos = this.datosManuales[collectionId]
+      .split(',')
+      .map((d) => parseFloat(d.trim()))
+      .filter((d) => !isNaN(d));
+
     const collection = this.muestras.find((c) => c.id === collectionId);
-    collection?.data.push(0); // Agrega un nuevo dato vacío
+    if (collection) {
+      collection.data = datos;
+      this.modoIngresoManual[collectionId] = false; // Oculta el área de ingreso manual
+    }
   }
 
   removeData(collectionId: number, index: number): void {
     const collection = this.muestras.find((c) => c.id === collectionId);
-    collection?.data.splice(index, 1); // Elimina el dato por índice
+    collection?.data.splice(index, 1);
   }
 
-  
   calcular(): void {
-  console.log(this.muestras);
-  alert('Se hizo la magia, chingao.');
-  this.onCalcular.emit([{ id: 1, data: [1, 2, 3,5,6 ,3,1,5,7,9,521,14,18] }]); // Emite las muestras al componente padre
+    this.onCalcular.emit(this.muestras); // Emite todas las muestras al componente padre
+  }
 }
 
-}
-export interface Muestra { 
+export interface Muestra {
   id: number;
   data: number[];
-};
+}
