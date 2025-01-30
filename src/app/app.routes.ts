@@ -2,9 +2,8 @@ import { Routes } from '@angular/router';
 import { MedidasAsociativasComponent } from './opciones/medidas-asociativas/medidas-asociativas.component';
 import { MedidasDescriptivasComponent } from './opciones/medidas-descriptivas/medidas-descriptivas.component';
 import { TecnicasDeConteoComponent } from './opciones/tecnicas-de-conteo/tecnicas-de-conteo.component';
-import { CalculadoraComponent } from './calculadora/calculadora.component';
-import { PortadaComponent } from './portada/portada.component';
-
+import { PortadaComponent } from './pantallas/portada/portada.component';
+import { CalculadoraComponent } from './pantallas/calculadora/calculadora.component';
 export const routes: Routes = [
   { path: '', redirectTo: 'portada', pathMatch: 'full' },
   { path: 'portada', component: PortadaComponent },

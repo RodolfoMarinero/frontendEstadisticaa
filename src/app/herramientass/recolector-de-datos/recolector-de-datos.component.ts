@@ -1,6 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+import { DataSetsService } from '../../services/data-sets.service';
 
 @Component({
   selector: 'app-recolector-de-datos',
@@ -10,16 +11,14 @@ import { FormsModule } from '@angular/forms';
   styleUrls: ['./recolector-de-datos.component.css'],
 })
 export class RecolectorDeDatosComponent {
-  @Output() onCalcular: EventEmitter<Muestra[]> = new EventEmitter();
-
   private _cantidadDeMuestras: number = 0;
-  @Input()
-  set cantidadDeMuestras(value: number) {
-    this._cantidadDeMuestras = value;
-    this.updateCollections();
-  }
-  get cantidadDeMuestras(): number {
-    return this._cantidadDeMuestras;
+  constructor(private servicioDataSets : DataSetsService) {
+    this.servicioDataSets.currentTab$.subscribe((data) => {
+      this._cantidadDeMuestras=data === 'medidas_asociativas' ? 2 : 1;
+      console.log('Cantidad de muestras:', this._cantidadDeMuestras);
+      
+      this.updateCollections();
+    });
   }
 
   muestras: Muestra[] = [];
@@ -27,50 +26,48 @@ export class RecolectorDeDatosComponent {
   modoIngresoManual: { [key: number]: boolean } = {}; // Controla el modo de ingreso manual
 
   updateCollections(): void {
-    this.muestras = Array.from({ length: this.cantidadDeMuestras }, (_, i) => ({
-      id: i + 1,
-      data: this.muestras[i]?.data || [],
-    }));
+    this.muestras = [];
+    let i ;
+    for(i=0; i < this._cantidadDeMuestras; i++) {
+      console.log('i:', i);
+      if(i==0){
+        this.muestras.push({ id: `primer`, data: [] });
+      }else{
+        this.muestras.push({ id: `segundo`, data: [] });
+      }
+    } 
   }
 
-  importarDesdeCSV(collectionId: number): void {
+  importarDesdeCSV(collectionId: string): void {
     // Simulación de importación desde CSV
-    alert(`Importando datos desde CSV para la colección ${collectionId}`);
+    alert(`Importando datos desde CSV para la ${collectionId} colección`);
+    this.servicioDataSets.setDataSets(this.muestras);
   }
 
-  importarDesdeAPI(collectionId: number): void {
+  importarDesdeAPI(collectionId: string): void {
     // Simulación de importación desde API
-    alert(`Importando datos desde API para la colección ${collectionId}`);
+    alert(`Importando datos desde API para la ${collectionId} colección`);
+    this.servicioDataSets.setDataSets(this.muestras);
   }
 
-  ingresarManual(collectionId: number): void {
-    this.modoIngresoManual[collectionId] = true;
+  ingresarManual(collectionId: string): void {
+    // Simulación de importación desde API
+    alert(`Importando datos de manera manual para la ${collectionId} colección`);
+    this.servicioDataSets.setDataSets(this.muestras);
   }
 
-  guardarDatosManuales(collectionId: number): void {
-    const datos = this.datosManuales[collectionId]
-      .split(',')
-      .map((d) => parseFloat(d.trim()))
-      .filter((d) => !isNaN(d));
 
-    const collection = this.muestras.find((c) => c.id === collectionId);
-    if (collection) {
-      collection.data = datos;
-      this.modoIngresoManual[collectionId] = false; // Oculta el área de ingreso manual
-    }
-  }
-
-  removeData(collectionId: number, index: number): void {
+  removeData(collectionId: string, index: number): void {
     const collection = this.muestras.find((c) => c.id === collectionId);
     collection?.data.splice(index, 1);
   }
 
   calcular(): void {
-    this.onCalcular.emit(this.muestras); // Emite todas las muestras al componente padre
+    alert('Calculando...'+this.muestras);
   }
 }
 
 export interface Muestra {
-  id: number;
+  id: string;
   data: number[];
 }

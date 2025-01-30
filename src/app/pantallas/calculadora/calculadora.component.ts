@@ -1,6 +1,7 @@
 import { ChangeDetectorRef, Component } from '@angular/core';
 import { RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
-import { DataContainerComponent } from '../herramientass/data-container/data-container.component';
+import { DataContainerComponent } from '../../herramientass/data-container/data-container.component';
+import { DataSetsService } from '../../services/data-sets.service';
 
 @Component({
   selector: 'app-calculadora',
@@ -29,10 +30,13 @@ export class CalculadoraComponent {
     medidas_asociativas: 'Set de datos para Medidas Asociativas',
   };
 
-  constructor() {}
+  constructor(private dataSetService:DataSetsService) {
+
+  }
 
   changeTab(tab: string) {
     this.activeTab = tab;
+    this.dataSetService.setCurrentTab(tab);
     console.log(`Changing tab to: ${tab}`);
   }
 }

@@ -3,10 +3,9 @@
   <p class="text-center text-muted">
     Elige la manera de agregar tus datos muestrales
   </p>
-
   @for (collection of muestras; track $index) {
     <div class="card p-3 my-3">
-      <h5 class="card-title">Datos {{ collection.id }}</h5>
+      <h5 class="card-title">{{ collection.id }} conjunto de datos</h5>
       <div class="d-flex gap-2">
         <button
           class="btn btn-outline-primary d-flex align-items-center gap-2"
@@ -30,42 +29,8 @@
           Ingresar datos manualmente
         </button>
       </div>
-
-      <!-- Mostrar área de ingreso manual si está activa -->
-      @if (modoIngresoManual[collection.id]) {
-        <div class="mt-3">
-          <textarea
-            class="form-control"
-            rows="3"
-            [(ngModel)]="datosManuales[collection.id]"
-            placeholder="Ingresa tus datos separados por comas (ej: 1, 2, 3)"
-          ></textarea>
-          <button class="btn btn-success mt-2" (click)="guardarDatosManuales(collection.id)">
-            Guardar datos
-          </button>
-        </div>
-      }
-
-      <!-- Mostrar datos actuales -->
-      <div class="mt-3">
-        <h6>Datos actuales:</h6>
-        <ul class="list-group">
-          @for (dato of collection.data; track $index) {
-            <li class="list-group-item d-flex justify-content-between align-items-center">
-              {{ dato }}
-              <button
-                class="btn btn-danger btn-sm"
-                (click)="removeData(collection.id, $index)"
-              >
-                <i class="bi bi-trash"></i>
-              </button>
-            </li>
-          }
-        </ul>
-      </div>
     </div>
-  }
-
+    }
   <div class="text-center mt-4">
     <button class="btn btn-success d-flex align-items-center gap-2 mx-auto" (click)="calcular()">
       <i class="bi bi-calculator"></i>

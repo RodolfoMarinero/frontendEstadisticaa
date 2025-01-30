@@ -1,4 +1,5 @@
 import { Component, Input, OnChanges } from '@angular/core';
+import { DataSetsService } from '../../services/data-sets.service';
 
 @Component({
   selector: 'app-data-container',
@@ -6,8 +7,14 @@ import { Component, Input, OnChanges } from '@angular/core';
   styleUrls: ['./data-container.component.css'],
 })
 export class DataContainerComponent implements OnChanges {
-  @Input() title: string = '';
-  @Input() data: string[] | string[][] = []; // Soporta arreglos bidimensionales
+  title: string = '';
+  data: string[] | string[][] = [];
+  constructor(private dataSetsService:DataSetsService) {
+    this.dataSetsService.dataSets$.subscribe((data) => {
+      this.data = data;
+      console.log('DataContainerComponent received data:', data);
+    });
+  }
 
   ngOnChanges() {
     console.log('DataContainerComponent updated:', this.title, this.data);

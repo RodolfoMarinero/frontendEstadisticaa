@@ -16,4 +16,15 @@
     text-align: center;
     padding: 10px;
   }
-  
+  .detallesTD{
+    color: blue;
+    cursor: pointer;
+  }
+  .borderless{
+    border: none;
+    border-style: none;
+    background-color: transparent;
+    outline: none;
+    border-top: none;
+    border-color: white;
+  }
