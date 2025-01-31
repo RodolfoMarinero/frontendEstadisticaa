@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, EventEmitter, input, Input, Output } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { DataSetsService } from '../../services/data-sets.service';
 
@@ -11,6 +11,7 @@ import { DataSetsService } from '../../services/data-sets.service';
   styleUrls: ['./recolector-de-datos.component.css'],
 })
 export class RecolectorDeDatosComponent {
+  @Input() titleLess: boolean = false;
   private _cantidadDeMuestras: number = 0;
   constructor(private servicioDataSets : DataSetsService) {
     this.servicioDataSets.currentTab$.subscribe((data) => {
