@@ -1,0 +1,46 @@
+<div class="container my-5">
+  @if (!titleLess) {
+    
+      <h2 class="text-center">Recopilación de Datos Muestrales</h2>
+      <p class="text-center text-muted">
+        Elige la manera de agregar tus datos muestrales
+      </p>
+  }
+  @for (collection of muestras; track $index) {
+    
+      <h5 class="card-title">{{ collection.id }} conjunto de datos</h5>
+      <div class="card p-3 my-3">
+      <div class="d-flex gap-2 justify-content-center">
+        <button
+          class="btn btn-outline-success d-flex align-items-center gap-2"
+          (click)="importarDesdeCSV(collection.id)"
+        >
+          <i class="bi bi-file-earmark-arrow-up"></i>
+          <span>Desde CSV</span>
+        </button>
+        <button
+          class="btn btn-outline-success d-flex align-items-center gap-2"
+          (click)="importarDesdeAPI(collection.id)"
+        >
+          <i class="bi bi-cloud-arrow-up"></i>
+          <span>Precargados</span>
+        </button>
+        <button
+          class="btn btn-outline-success d-flex align-items-center gap-2"
+          (click)="ingresarManual(collection.id)"
+        >
+          <i class="bi bi-pencil"></i>
+          <span>Ingresar manualmente</span>
+        </button>
+      </div>
+    </div>
+    }
+    @if (!titleLess) {
+      <div class="text-center mt-4">
+        <button class="btn btn-success d-flex align-items-center gap-2 mx-auto" (click)="calcular()">
+          <i class="bi bi-calculator"></i>
+          Calcular medidas estadísticas
+        </button>
+      </div>
+    }
+</div>

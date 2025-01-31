@@ -1,16 +1,18 @@
 import { Component } from '@angular/core';
-import {RouterLink, RouterLinkActive, RouterOutlet} from "@angular/router";
+import {Router, RouterLink, RouterLinkActive, RouterModule, RouterOutlet} from "@angular/router";
 
 @Component({
   selector: 'app-portada',
     imports: [
-        RouterLink,
-        RouterLinkActive,
-        RouterOutlet
+      RouterModule
     ],
   templateUrl: './portada.component.html',
   styleUrl: './portada.component.css'
 })
 export class PortadaComponent {
+  private router:Router=new Router();
+  navegar(url: string) {
+    this.router.navigate([url]);
 
+  }
 }

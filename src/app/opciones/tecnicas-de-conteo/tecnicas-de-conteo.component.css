@@ -1,34 +1,22 @@
 #calculadora-combinaciones-permutaciones {
     font-family: Arial, sans-serif;
     background-color: white;
-    padding: 20px;
     border-radius: 8px;
     width: 300px;
     margin: 0 auto;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   }
-  #calculadora-combinaciones-permutaciones {
-    font-family: Arial, sans-serif;
-    background-color: white;
-    padding: 20px;
-    border-radius: 8px;
-    width: 300px;  /* Tamaño predeterminado para pantallas pequeñas */
-    margin: 0 auto;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-}
 
 /* Media query para pantallas más grandes */
 @media (min-width: 768px) {
     #calculadora-combinaciones-permutaciones {
         width: 500px; /* Aumento el tamaño en pantallas más grandes */
-        padding: 30px; /* Aumento el padding para un mejor espaciado */
     }
 }
 
 @media (min-width: 1024px) {
     #calculadora-combinaciones-permutaciones {
         width: 600px; /* Aumento el tamaño aún más en pantallas más grandes */
-        padding: 40px; /* Aumento el padding para mayor amplitud */
     }
 }
 

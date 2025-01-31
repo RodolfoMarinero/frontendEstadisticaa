@@ -1,0 +1,46 @@
+<div class="card shadow-sm">
+  <div class="card-header bg-success text-white text-center">
+    <h5 class="mb-0">{{ title }}</h5>
+  </div>
+
+  <div class="card-body">
+    @if(!hasData){
+      <app-recolector-de-datos [titleLess]="true"></app-recolector-de-datos>
+    }@else {
+      <!-- Verificar si los datos son asociativos (bidimensionales) -->
+      @if (isAssociative()) {
+        <table class="table table-bordered">
+          <thead>
+            <tr>
+              @for (header of data[0]; track header) {
+                <th>{{ header }}</th>
+              }
+            </tr>
+          </thead>
+          <tbody>
+            @for (row of data.slice(1); track row) {
+              <tr>
+                @for (cell of row; track cell) {
+                  <td>{{ cell }}</td>
+                }
+              </tr>
+            }
+          </tbody>
+        </table>
+      } @else {
+        <!-- Renderizar datos simples -->
+        <div class="d-grid" style="grid-template-columns: repeat(auto-fit, minmax(30px, 1fr)); gap: 10px;">
+          @for (item of data ; track item) {
+            <div class="p-3 border text-center rounded bg-light">
+              {{ item }}
+            </div>
+          }
+        </div>
+      }
+    }
+    </div>
+
+    <div class="card-footer text-muted text-center">
+      Total: {{ data.length }} elementos
+    </div>
+  </div>

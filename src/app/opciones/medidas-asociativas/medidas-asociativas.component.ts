@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
-import { RecolectorDeDatosComponent, Muestra } from '../../recolector-de-datos/recolector-de-datos.component';
+import { RecolectorDeDatosComponent, Muestra } from '../../herramientass/recolector-de-datos/recolector-de-datos.component';
+import { DataSetsService } from '../../services/data-sets.service';
 
 @Component({
   selector: 'app-medidas-asociativas',
@@ -15,7 +16,12 @@ export class MedidasAsociativasComponent {
     covarianza: 0,
     coeficienteCorrelacion: 0
   }
-
+  existDataSets: boolean = false;
+    constructor(private servicioDataSets : DataSetsService) { 
+      this.servicioDataSets.dataSets$.subscribe((data) => {
+        this.existDataSets=servicioDataSets.hasDataSets();
+      });
+    }
   dispersarResultados( muestras:Muestra[]){
     this.medidas={
       correlacion: 10,

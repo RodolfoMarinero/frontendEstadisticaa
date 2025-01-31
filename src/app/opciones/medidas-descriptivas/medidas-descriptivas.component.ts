@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
-import { Muestra, RecolectorDeDatosComponent } from '../../recolector-de-datos/recolector-de-datos.component';
+import { Muestra, RecolectorDeDatosComponent } from '../../herramientass/recolector-de-datos/recolector-de-datos.component';
+import { DataSetsService } from '../../services/data-sets.service';
 
 @Component({
   selector: 'app-medidas-descriptivas',
@@ -9,6 +10,12 @@ import { Muestra, RecolectorDeDatosComponent } from '../../recolector-de-datos/r
   styleUrl: './medidas-descriptivas.component.css'
 })
 export class MedidasDescriptivasComponent {
+  existDataSets: boolean = false;
+  constructor(private servicioDataSets : DataSetsService) { 
+    this.servicioDataSets.dataSets$.subscribe((data) => {
+      this.existDataSets=servicioDataSets.hasDataSets();
+    });
+  }
   datos: Muestra[] = [];
   medidas:MedidasDescriptivas= {
     media: 0,
@@ -27,6 +34,10 @@ export class MedidasDescriptivasComponent {
       varianza: 10
     }
     this.datos=muestras;
+  }
+  openModal(medida:string){
+    alert('mostrando detalles de : ' + medida);
+
   }
 }
 interface MedidasDescriptivas{
