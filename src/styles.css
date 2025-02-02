@@ -1,6 +1,6 @@
 /* You can add global styles to this file, and also import other style files */
 body {
-  font-family: Arial, sans-serif;
+  font-family: Roboto, "Helvetica Neue", Arial, sans-serif;
   background-color: #f4f4f4;
   margin: 0;
   padding: 0;
@@ -16,4 +16,33 @@ body {
 
 h1 {
   color: #333;
+}
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+.pantalla-detalles .mat-mdc-dialog-content, .mat-mdc-dialog-title {
+  color: black !important;
+  background-color: white;
+}
+.table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.table th, .table td {
+  text-align: center;
+  padding: 10px;
+}
+.detallesTD{
+  color: #198754; /* Bootstrap success color */
+  cursor: pointer;
+}
+.borderless{
+  border: none;
+  border-style: none;
+  background-color: transparent;
+  outline: none;
+  border-top: none;
+  border-color: white;
 }

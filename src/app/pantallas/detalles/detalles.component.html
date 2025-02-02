@@ -1,1 +1,49 @@
-<p>detalles works!</p>
+<div class="dialogContainer">
+    <h2 mat-dialog-title>Información sobre {{info.medida}}</h2>
+
+    <mat-dialog-content>
+        <mat-accordion class="custom-accordion" multi>
+            <mat-expansion-panel class="custom-panel">
+                <mat-expansion-panel-header>
+                    <mat-panel-description>
+                        información sobre la medida
+                    </mat-panel-description>
+                    <mat-panel-title></mat-panel-title>
+                    <i class="bi bi-question-circle"></i>
+                </mat-expansion-panel-header>
+                <h6>¿Qué es la {{info.medida}}?</h6>
+                {{info.informacion}}
+            </mat-expansion-panel>
+
+            <mat-expansion-panel class="custom-panel">
+                <mat-expansion-panel-header>
+                    <mat-panel-description>
+                        ¿Cómo calcular la {{info.medida}}?
+                    </mat-panel-description>
+                    <mat-panel-title></mat-panel-title>
+                    <i class="bi bi-calculator"></i>
+                </mat-expansion-panel-header>
+                <h6>Formula para calcular la medida</h6>
+                <div class="align-center" style="text-align: center;">
+                    <app-mathjax [formula]="info.formula"></app-mathjax>
+                </div>
+            </mat-expansion-panel>
+
+            <mat-expansion-panel class="custom-panel">
+                <mat-expansion-panel-header>
+                    <mat-panel-description>
+                        Código java
+                    </mat-panel-description>
+                    <mat-panel-title></mat-panel-title>
+                    <i class="bi bi-code-slash"></i>
+                </mat-expansion-panel-header>
+                <h6>Código utilizado para calcular la medida</h6>
+                <pre><code [highlight]="info.codigo" [language]="'java'"></code></pre>
+            </mat-expansion-panel>
+        </mat-accordion>
+    </mat-dialog-content>
+
+    <mat-dialog-actions>
+        <button class="btn btn-outline-success" mat-dialog-close cdkFocusInitial>Ok</button>
+    </mat-dialog-actions>
+</div>

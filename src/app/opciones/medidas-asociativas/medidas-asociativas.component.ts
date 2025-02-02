@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { RecolectorDeDatosComponent, Muestra } from '../../herramientass/recolector-de-datos/recolector-de-datos.component';
 import { DataSetsService } from '../../services/data-sets.service';
+import { ModalService } from '../../services/modal.service';
 
 @Component({
   selector: 'app-medidas-asociativas',
@@ -11,24 +12,27 @@ import { DataSetsService } from '../../services/data-sets.service';
 })
 export class MedidasAsociativasComponent {
   datos: Muestra[] = [];
-  medidas:MedidasAsociacion= {
+  medidas: MedidasAsociacion = {
     correlacion: 0,
     covarianza: 0,
     coeficienteCorrelacion: 0
   }
   existDataSets: boolean = false;
-    constructor(private servicioDataSets : DataSetsService) { 
-      this.servicioDataSets.dataSets$.subscribe((data) => {
-        this.existDataSets=servicioDataSets.hasDataSets();
-      });
-    }
-  dispersarResultados( muestras:Muestra[]){
-    this.medidas={
+  constructor(private servicioDataSets: DataSetsService, private modalService: ModalService) {
+    this.servicioDataSets.dataSets$.subscribe((data) => {
+      this.existDataSets = servicioDataSets.hasDataSets();
+    });
+  }
+  openModal(medida: string) {
+    this.modalService.abrirModal(medida);
+  }
+  dispersarResultados(muestras: Muestra[]) {
+    this.medidas = {
       correlacion: 10,
       covarianza: 10,
       coeficienteCorrelacion: 10
     }
-    this.datos=muestras;
+    this.datos = muestras;
   }
 }
 interface MedidasAsociacion {
