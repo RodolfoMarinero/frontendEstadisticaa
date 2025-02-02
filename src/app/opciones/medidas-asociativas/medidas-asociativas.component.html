@@ -1,27 +1,32 @@
 @if (!existDataSets) {
   <app-recolector-de-datos></app-recolector-de-datos>
-}
-<div class="container mb-2">
+}@else{
+  <div class="container mb-2">
     <h3 class="text-center">Tabla de Medidas Asociativas</h3>
     <table class="table table-bordered">
       <thead class="thead-dark">
         <tr>
+          <th class="borderless"></th>
           <th>Medida</th>
           <th>Valor</th>
         </tr>
       </thead>
       <tbody>
         <tr>
+          <td class="borderless"><a (click)="openModal('correlacion')" ><i class="bi bi-search detallesTD" ></i></a></td>
           <td>Correlacion</td>
           <td>{{ medidas.correlacion }}</td>
         </tr>
         <tr>
+          <td class="borderless"><a (click)="openModal('covarianza')" ><i class="bi bi-search detallesTD" ></i></a></td>
           <td>Covarianza</td>
           <td>{{ medidas.covarianza }}</td>
         </tr>
         <tr>
+          <td class="borderless"><a (click)="openModal('coeficienteCorrelacion')" ><i class="bi bi-search detallesTD" ></i></a></td>
           <td>Coeficiente de correlación</td>
           <td>{{ medidas.coeficienteCorrelacion }}</td>
       </tbody>
     </table>
   </div>
+}

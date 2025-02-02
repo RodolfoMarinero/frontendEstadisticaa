@@ -1,42 +1,49 @@
+<div class="masterDiv">
+
+
 @if (!existDataSets) {
   <app-recolector-de-datos></app-recolector-de-datos>
+}@else{
+  
+<div class="container mb-2 mt-0">
+  <h3 class="text-center">Tabla de Medidas Descriptivas</h3>
+  <table class="table table-bordered">
+    <thead class="thead-dark">
+      <tr>
+        <th class="borderless"></th>
+        <th>Medida</th>
+        <th>Valor</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td class="borderless"><a (click)="openModal('media')" ><i class="bi bi-search detallesTD" ></i></a></td>
+        <td>Media</td>
+        <td>{{ medidas.media }}</td>
+      </tr>
+      <tr>
+        <td class="borderless" ><a (click)="openModal('mediana')" ><i class="bi bi-search detallesTD" ></i></a></td>
+        <td>Mediana</td>
+        <td>{{ medidas.mediana }}</td>
+      </tr>
+      <tr>
+        <td class="borderless"><a (click)="openModal('moda')" ><i class="bi bi-search detallesTD" ></i></a></td>
+        <td>Moda</td>
+        <td>{{ medidas.moda.length ? medidas.moda.join(', ') : 'Sin moda' }}</td>
+      </tr>
+      <tr>
+        <td class="borderless"><a (click)="openModal('varianza')" ><i class="bi bi-search detallesTD" ></i></a></td>
+        <td>Varianza</td>
+        <td>{{ medidas.varianza }}</td>
+      </tr>
+      <tr>
+        <td class="borderless"><a (click)="openModal('desviacion estandar')" ><i class="bi bi-search detallesTD" ></i></a></td>
+        <td>Desviación Estándar</td>
+        <td>{{ medidas.desviacionEstandar }}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
 }
-<div class="container mb-2">
-    <h3 class="text-center">Tabla de Medidas Descriptivas</h3>
-    <table class="table table-bordered">
-      <thead class="thead-dark">
-        <tr>
-          <th class="borderless"></th>
-          <th>Medida</th>
-          <th>Valor</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td class="borderless"><a (click)="openModal('media')" ><i class="bi bi-search detallesTD" ></i></a></td>
-          <td>Media</td>
-          <td>{{ medidas.media }}</td>
-        </tr>
-        <tr>
-          <td class="borderless" ><a (click)="openModal('mediana')" ><i class="bi bi-search detallesTD" ></i></a></td>
-          <td>Mediana</td>
-          <td>{{ medidas.mediana }}</td>
-        </tr>
-        <tr>
-          <td class="borderless"><a (click)="openModal('moda')" ><i class="bi bi-search detallesTD" ></i></a></td>
-          <td>Moda</td>
-          <td>{{ medidas.moda.length ? medidas.moda.join(', ') : 'Sin moda' }}</td>
-        </tr>
-        <tr>
-          <td class="borderless"><a (click)="openModal('varianza')" ><i class="bi bi-search detallesTD" ></i></a></td>
-          <td>Varianza</td>
-          <td>{{ medidas.varianza }}</td>
-        </tr>
-        <tr>
-          <td class="borderless"><a (click)="openModal('ds')" ><i class="bi bi-search detallesTD" ></i></a></td>
-          <td>Desviación Estándar</td>
-          <td>{{ medidas.desviacionEstandar }}</td>
-        </tr>
-      </tbody>
-    </table>
-  </div>
+</div>

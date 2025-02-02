@@ -11,5 +11,5 @@ import { HeaderComponent } from '../pantallas/header/header.component';
   styleUrl: './layout-page.component.css'
 })
 export class LayoutPageComponent {
-  
+  constructor() { }
 }

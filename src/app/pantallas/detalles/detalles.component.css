@@ -1,0 +1,63 @@
+.dialogContainer{
+    background-color: white;
+    color: black !important;
+}
+.dialogContainer h2 p { 
+    color: black !important;
+}
+
+i{
+    color: black !important;
+    margin-right: 10px;
+}
+.custom-accordion {
+    background-color: white; /* Fondo gris claro */
+    border-radius: 8px; /* Bordes redondeados */
+    padding: 10px;
+}
+
+.custom-panel {
+    color: black;
+    background-color: white;
+    border: 1px solid black; /* Bordes de color verde */
+    margin-bottom: 10px;
+}
+
+.custom-panel .mat-expansion-panel-header {
+    background-color: white; 
+    color: black; 
+    display: flex;
+}
+.custom-panel .mat-expansion-panel {
+    background-color: white; /* Fondo azul claro en el contenido */
+    color: black;
+}
+.custom-panel .mat-expansion-panel-content-wrapper .mat-expansion-panel-body {
+    color: black;
+    font-size: small;
+    background-color: blue; /* Fondo azul claro en el contenido */
+}
+.custom-panel .mat-expansion-panel-header span {
+    color:  black;  /* Color verde, por ejemplo */
+}
+.custom-panel .mat-expansion-panel-header-title {
+    color: aliceblue;
+}
+
+.custom-panel .mat-expansion-panel-header-description {
+    color: black;
+    justify-self: center;
+}
+.flex{
+    display: flex;
+    flex-direction: column;
+}
+.centro{
+    justify-content: center;
+}
+.final{
+    justify-content: flex-end;
+}
+.inicio{
+    justify-content: flex-start;
+}
