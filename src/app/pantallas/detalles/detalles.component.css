@@ -7,7 +7,7 @@
 }
 
 i{
-    color: black !important;
+    color: #198754;
     margin-right: 10px;
 }
 .custom-accordion {
@@ -19,7 +19,7 @@ i{
 .custom-panel {
     color: black;
     background-color: white;
-    border: 1px solid black; /* Bordes de color verde */
+    border: 1px solid #198754; /* Bordes de color verde */
     margin-bottom: 10px;
 }
 
@@ -60,4 +60,9 @@ i{
 }
 .inicio{
     justify-content: flex-start;
+}
+.contenedor-codigo{
+    border-radius: 15px;
+    border-style:solid ;
+    border-color: #198754;
 }

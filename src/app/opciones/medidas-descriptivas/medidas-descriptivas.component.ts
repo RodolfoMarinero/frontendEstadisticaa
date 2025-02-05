@@ -1,12 +1,13 @@
 import { Component } from '@angular/core';
-import { Muestra, RecolectorDeDatosComponent } from '../../herramientass/recolector-de-datos/recolector-de-datos.component';
 import { DataSetsService } from '../../services/data-sets.service';
 import { ModalService } from '../../services/modal.service';
+import { SelectorDeMuestrasComponent } from '../../herramientass/selector-de-muestras/selector-de-muestras.component';
+import { MedidasDescriptivas, Muestra } from '../../interfaces/Muestra';
 
 @Component({
   selector: 'app-medidas-descriptivas',
   standalone: true,
-  imports: [RecolectorDeDatosComponent],
+  imports: [SelectorDeMuestrasComponent],
   templateUrl: './medidas-descriptivas.component.html',
   styleUrl: './medidas-descriptivas.component.css'
 })
@@ -16,29 +17,16 @@ export class MedidasDescriptivasComponent {
   datos: Muestra[] = [];
   constructor(private servicioDataSets : DataSetsService,private modalService:ModalService) { 
     this.servicioDataSets.dataSets$.subscribe((data) => {
-      this.existDataSets=servicioDataSets.hasDataSets();
-      this.checkForDS();
+      this.existDataSets=servicioDataSets.getNumeroDeMuestras()==2;
     });
   }
   openModal(medida:string){
     this.modalService.abrirModal(medida);
   }
-  checkForDS(){
-    if(this.existDataSets){
-      this.medidas={
-        media: 10,
-        mediana: 10,
-        moda: [10],
-        desviacionEstandar: 10,
-        varianza: 10
-      }
-    }
+  llenarTabla(datos:any){
+    console.log('datos recibidos'+datos);
+    
+    this.medidas=datos;
+    this.existDataSets=true;
   }
-}
-interface MedidasDescriptivas{
-  media: number ;
-  mediana: number ;
-  moda: number[] ;
-  desviacionEstandar: number ;
-  varianza: number;
 }

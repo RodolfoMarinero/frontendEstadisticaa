@@ -38,7 +38,10 @@
                     <i class="bi bi-code-slash"></i>
                 </mat-expansion-panel-header>
                 <h6>Código utilizado para calcular la medida</h6>
-                <pre><code [highlight]="info.codigo" [language]="'java'"></code></pre>
+                <div class="contenedor-codigo">
+                    <pre><code [highlight]="info.codigo" [language]="'java'"></code></pre>
+                </div>
+                
             </mat-expansion-panel>
         </mat-accordion>
     </mat-dialog-content>

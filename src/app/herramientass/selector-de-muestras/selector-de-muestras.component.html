@@ -1,0 +1,27 @@
+<div class="container my-5">
+    <div>
+        <h1 class="text-center">Selector de muestras</h1>
+        <p class="text-center">Selecciona un conjunto de datos para calcular sus {{nombreMedida}}</p>
+    </div>
+    @for (item of [].constructor(cantidadDeMuestrasNecesarias); track $index) {
+    
+    <h5 class="card-title my-1 mx-2">conjunto de datos {{$index + 1}}</h5>
+    <div class="card">
+        <mat-form-field>
+            <mat-label [style]="{color: 'black'}">Muestra</mat-label>
+            <mat-select>
+              @for (muestra of muestrasRegistradas; track $index) {
+                <mat-option [value]="muestra.id">{{muestra.nombre}}</mat-option>
+              }
+            </mat-select>
+          </mat-form-field>
+          
+    </div>
+    }
+    <div class="text-center mt-4">
+        <button class="btn btn-success d-flex align-items-center gap-2 mx-auto" (click)="calcular()">
+            <i class="bi bi-calculator"></i>
+            Calcular medidas estadísticas
+        </button>
+    </div>
+</div>

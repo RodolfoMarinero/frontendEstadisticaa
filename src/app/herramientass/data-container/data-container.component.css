@@ -16,6 +16,16 @@
   transform: translateX(5px);
 }
 
+.d-inline{
+  display: inline;
+}
 .badge {
   font-size: 14px;
+}
+.d-flex{
+  flex-wrap: nowrap;
+}
+.contenedoor{
+  width: 100%;
+
 }
