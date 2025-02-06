@@ -1,15 +1,15 @@
-<div class="card shadow-sm ">
+<div class="card shadow-sm grandota">
   <div class="card-header bg-success text-white text-center w-100">
-    <h5 class="mb-0">Muestras disponibles para realizar calculos</h5>
+    <h5 class="">Muestras  disponibles  para  realizar  calculos</h5>
   </div>
 
   <div class="card-body">
-    @if(!hasData){
-    <app-recolector-de-datos [titleLess]="true"></app-recolector-de-datos>
-    }@else {
-        <div>
+    <div>
+      <app-recolector-de-datos [titleLess]="true"></app-recolector-de-datos>
+    </div>
+    <div class="scroll-container">
           @for(muestra of data ; track $index){
-            <div class="position-relative border rounded shadow-sm bg-light p-2 mb-2">
+            <div class="position-relative border rounded shadow-sm bg-light p-2 m-2">
               <span class="position-absolute top-0 end-0 m-2 text-danger fw-bold cursor-pointer" 
                     (click)="deleteDataSet(muestra)" 
                     style="cursor: pointer;">
@@ -33,11 +33,8 @@
                 </div>
                 </div>
             </div>
-            
-            
         }
         </div>
-    }
   </div>
   @if(hasData){
   <div class="card-footer text-muted text-center">

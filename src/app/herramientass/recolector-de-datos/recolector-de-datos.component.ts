@@ -15,6 +15,7 @@ import { Muestra } from '../../interfaces/Muestra';
 export class RecolectorDeDatosComponent {
   @Input() titleLess: boolean = false;
   private _cantidadDeMuestrasNecesarias: number = 0;
+  nuevo:boolean=false;
   constructor(private servicioDataSets : DataSetsService,private tabService:TabService) {
     this.tabService.currentTab$.subscribe((data) => {
       this._cantidadDeMuestrasNecesarias=data === 'medidas_asociativas' ? 2 : 1;
@@ -23,26 +24,30 @@ export class RecolectorDeDatosComponent {
   }
   muestras: Muestra[] = [];
 
-  importarDesdeCSV(collectionId: number): void {
+  importarDesdeCSV(): void {
     // Simulación de importación desde CSV
-    alert(`Importando datos desde CSV para la ${collectionId} colección`);
-    this.servicioDataSets.addMuestra(this.muestras[0]);
+    alert(`Importando datos desde CSV`);
+    //this.servicioDataSets.addMuestra(this.muestras[0]);
   }
 
-  importarDesdeAPI(collectionId: number): void {
+  importarDesdeAPI(): void {
     // Simulación de importación desde API
-    alert(`Importando datos desde API para la ${collectionId} colección`);
-    this.servicioDataSets.addMuestra(this.muestras[0]);
+    alert(`Importando datos desde API`);
+    //this.servicioDataSets.addMuestra(this.muestras[0]);
   }
 
-  ingresarManual(collectionId: number): void {
+  ingresarManual(): void {
     // Simulación de importación desde API
-    alert(`Importando datos de manera manual para la ${collectionId} colección`);
-    this.servicioDataSets.addMuestra(this.muestras[0]);
+    alert(`Importando datos de manera manual`);
+    //this.servicioDataSets.addMuestra(this.muestras[0]);
   }
+  agregar():void{
 
-
-  calcular(): void {
-    alert('Calculando...'+this.muestras);
+  }
+  nuevoSetDeDatos(){
+    this.nuevo=true;
+  }
+  cancelar(){
+    this.nuevo=false;
   }
 }

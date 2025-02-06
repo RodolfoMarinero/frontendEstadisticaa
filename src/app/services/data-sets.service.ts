@@ -17,6 +17,8 @@ export class DataSetsService {
       this.addMuestra({id:1,nombre:'datos de la piña',data:[1,2,5,7,3,83,3,67,8]});
       this.addMuestra({id:2,nombre:'datos del arroz',data:[1,2,5,7,3,83,3,67,8]});
       this.addMuestra({id:3,nombre:'datos de perros',data:[1,2,5,7,3,83,3,67,8]});
+      this.addMuestra({id:4,nombre:'datos de peso',data:[1,2,5,7,3,83,3,67,8]});
+      this.addMuestra({id:5,nombre:'datos de estatura',data:[1,2,5,7,3,83,3,67,8]});
       console.log(JSON.stringify(this._dataSetsSubject.getValue()));
       
     }
