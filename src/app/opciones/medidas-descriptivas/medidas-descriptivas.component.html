@@ -4,7 +4,7 @@
 @if (!existDataSets) {
   <app-selector-de-muestras (resultadoCalculado)="llenarTabla($event)"></app-selector-de-muestras>
 }@else{
-  
+
 <div class="container mb-2 mt-0">
   <h3 class="text-center">Tabla de Medidas Descriptivas</h3>
   <table class="table table-bordered">
@@ -37,7 +37,7 @@
         <td>{{ medidas.varianza }}</td>
       </tr>
       <tr>
-        <td class="borderless"><a (click)="openModal('desviacion estandar')" ><i class="bi bi-search detallesTD" ></i></a></td>
+        <td class="borderless"><a (click)="openModal('desviacionEstandar')" ><i class="bi bi-search detallesTD" ></i></a></td>
         <td>Desviación Estándar</td>
         <td>{{ medidas.desviacionEstandar }}</td>
       </tr>
