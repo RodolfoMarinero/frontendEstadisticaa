@@ -1,46 +1,46 @@
-<div class="card shadow-sm">
-  <div class="card-header bg-success text-white text-center">
-    <h5 class="mb-0">{{ title }}</h5>
+<div class="card shadow-sm grandota">
+  <div class="card-header bg-success text-white text-center w-100">
+    <h5 class="">Muestras  disponibles  para  realizar  calculos</h5>
   </div>
 
   <div class="card-body">
-    @if(!hasData){
+    <div>
       <app-recolector-de-datos [titleLess]="true"></app-recolector-de-datos>
-    }@else {
-      <!-- Verificar si los datos son asociativos (bidimensionales) -->
-      @if (isAssociative()) {
-        <table class="table table-bordered">
-          <thead>
-            <tr>
-              @for (header of data[0]; track header) {
-                <th>{{ header }}</th>
-              }
-            </tr>
-          </thead>
-          <tbody>
-            @for (row of data.slice(1); track row) {
-              <tr>
-                @for (cell of row; track cell) {
-                  <td>{{ cell }}</td>
-                }
-              </tr>
-            }
-          </tbody>
-        </table>
-      } @else {
-        <!-- Renderizar datos simples -->
-        <div class="d-grid" style="grid-template-columns: repeat(auto-fit, minmax(30px, 1fr)); gap: 10px;">
-          @for (item of data ; track item) {
-            <div class="p-3 border text-center rounded bg-light">
-              {{ item }}
+    </div>
+    <div class="scroll-container">
+          @for(muestra of data ; track $index){
+            <div class="position-relative border rounded shadow-sm bg-light p-2 m-2">
+              <span class="position-absolute top-0 end-0 m-2 text-danger fw-bold cursor-pointer" 
+                    (click)="deleteDataSet(muestra)" 
+                    style="cursor: pointer;">
+                x
+              </span>
+                <div class="d-flex flex-column">
+                <span class="fw-bold">{{ muestra.nombre }}</span>
+                <div class="d-flex mt-2 justify-content-between">
+                  <div>[
+                    @for (item of [].constructor(5); track $index) {
+                      {{muestra.data[$index]}}
+                      @if($index<4){
+                        ,
+                      }
+                    }    
+                    ...]</div>
+                  <div>
+                    <button class="btn btn-outline-success btn-sm me-1" (click)="editDataSet(muestra)"><i class="bi bi-pencil"></i></button>
+                    <button class="btn btn-outline-success btn-sm" (click)="viewDataSet(muestra)"><i class="bi bi-search"></i></button>
+                  </div>
+                </div>
+                </div>
             </div>
-          }
+        }
         </div>
-      }
-    }
-    </div>
-
-    <div class="card-footer text-muted text-center">
-      Total: {{ data.length }} elementos
-    </div>
   </div>
+  @if(hasData){
+  <div class="card-footer text-muted text-center">
+
+    Total: {{ data.length }} elementos
+
+  </div>
+  }
+</div>

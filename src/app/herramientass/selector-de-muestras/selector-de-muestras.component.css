@@ -1,0 +1,83 @@
+.select-mat{
+    background-color: #FFF;
+}
+::ng-deep .mat-form-field {
+    background: white; /* Fondo blanco para el campo */
+    color: black; /* Texto negro */
+  }
+  
+  ::ng-deep .mat-select-trigger {
+    background: white;
+    color: black !important; /* Color del texto del select */
+  }
+  
+  ::ng-deep .mat-option {
+    background: rgb(255, 255, 255) !important; /* Fondo blanco en opciones */
+    color: black !important; /* Texto negro en opciones */
+  }
+  
+  /* Asegurar que el fondo de las opciones desplegadas sea blanco */
+  ::ng-deep .mat-select-panel {
+    background-color: white !important;
+  }
+  div .mat-mdc-select-panel{
+    background-color: #FFF;
+  }
+  ::ng-deep .mat-mdc-select-panel {
+    background-color: white !important;
+  }
+  
+  ::ng-deep .mat-mdc-option {
+    color: black !important;
+  }
+  ::ng-deep .mdc-text-field--filled:not(.mdc-text-field--disabled) {
+    background-color: white !important;
+  }
+  
+  ::ng-deep .mat-mdc-select,
+  ::ng-deep .mat-mdc-select .mat-mdc-select-value {
+    color: black !important;
+  }
+  .select-mat {
+    background-color: #FFF;
+    color: black;
+}
+
+/* Estilos generales del select */
+::ng-deep .mat-mdc-select {
+    background: white;
+    color: black !important;
+}
+
+/* Opciones del desplegable */
+::ng-deep .mat-mdc-option {
+    color: black !important;
+    background: white !important;
+}
+
+/* Fondo de las opciones desplegadas */
+::ng-deep .mat-mdc-select-panel {
+    background-color: white !important;
+}
+
+/* Aplicar un fondo "success subtle" cuando una opción esté seleccionada */
+::ng-deep .mat-mdc-option.mat-mdc-option-active {
+    background-color: #13b140!important;
+    color: black !important;
+    :hover{
+      color: black;
+    }
+}
+
+/* También cambiar el fondo cuando la opción esté en foco (hover) */
+::ng-deep .mat-mdc-option:hover {
+    background-color: #13b14054 !important;
+    color: black;
+}
+::ng-deep .mat-mdc-option.mdc-list-item--selected:not(.mdc-list-item--disabled):not(.mat-mdc-option-multiple) 
+.mdc-list-item__primary-text {
+    color: black !important; /* Cambia el color del texto a negro */
+}
+
+  
+    

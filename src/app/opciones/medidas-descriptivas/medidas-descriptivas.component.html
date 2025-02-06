@@ -2,7 +2,7 @@
 
 
 @if (!existDataSets) {
-  <app-recolector-de-datos></app-recolector-de-datos>
+  <app-selector-de-muestras (resultadoCalculado)="llenarTabla($event)"></app-selector-de-muestras>
 }@else{
   
 <div class="container mb-2 mt-0">

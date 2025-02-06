@@ -46,3 +46,14 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
   border-top: none;
   border-color: white;
 }
+::ng-deep .mdc-floating-label {
+  color: black !important;
+}
+
+::ng-deep .mdc-text-field--filled:not(.mdc-text-field--disabled) .mdc-floating-label {
+  color: black !important;
+}
+
+::ng-deep .mdc-text-field--filled:not(.mdc-text-field--disabled).mdc-text-field .mdc-floating-label {
+  color: #198754 !important;
+}

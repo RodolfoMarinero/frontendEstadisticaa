@@ -11,8 +11,15 @@
                     <mat-panel-title></mat-panel-title>
                     <i class="bi bi-question-circle"></i>
                 </mat-expansion-panel-header>
-                <h6>¿Qué es la {{info.medida}}?</h6>
-                {{info.informacion}}
+                <div style="display: flex; align-items: flex-start;">
+                    <div style="flex: 1;">
+                        <h6>¿Qué es la {{info.medida}}?</h6>
+                        {{info.informacion}}
+                    </div>
+                    <div style="margin-left: 20px;">
+                        <img [src]="info.ejemplo" alt="Placeholder Image" width="200" height="200">
+                    </div>
+                </div>
             </mat-expansion-panel>
 
             <mat-expansion-panel class="custom-panel">
@@ -38,7 +45,10 @@
                     <i class="bi bi-code-slash"></i>
                 </mat-expansion-panel-header>
                 <h6>Código utilizado para calcular la medida</h6>
-                <pre><code [highlight]="info.codigo" [language]="'java'"></code></pre>
+                <div class="contenedor-codigo">
+                    <pre><code [highlight]="info.codigo" [language]="'java'"></code></pre>
+                </div>
+                
             </mat-expansion-panel>
         </mat-accordion>
     </mat-dialog-content>

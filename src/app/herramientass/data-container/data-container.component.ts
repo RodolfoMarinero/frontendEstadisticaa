@@ -1,6 +1,8 @@
-import { Component, Input, OnChanges, ViewChild, ViewContainerRef, ComponentRef, ComponentFactoryResolver, OnDestroy } from '@angular/core';
+import { Component} from '@angular/core';
 import { DataSetsService } from '../../services/data-sets.service';
 import { RecolectorDeDatosComponent } from '../recolector-de-datos/recolector-de-datos.component';
+import { TabService } from '../../services/tab.service';
+import { Muestra } from '../../interfaces/Muestra';
 
 @Component({
   selector: 'app-data-container',
@@ -9,44 +11,32 @@ import { RecolectorDeDatosComponent } from '../recolector-de-datos/recolector-de
   standalone: true,
   imports: [RecolectorDeDatosComponent]
 })
-export class DataContainerComponent implements OnChanges, OnDestroy {
+export class DataContainerComponent {
   title: string = '';
-  data: string[] | string[][] = [];
+  data: Muestra[] = [];
   hasData: boolean = false;
-  private recolectorDeDatosRef: ComponentRef<RecolectorDeDatosComponent> | null = null;
-
-  @ViewChild('recolectorDeDatosContainer', { read: ViewContainerRef, static: true }) recolectorDeDatosContainer!: ViewContainerRef;
-
-  constructor(private dataSetsService: DataSetsService, private resolver: ComponentFactoryResolver) {
+  constructor(private dataSetsService: DataSetsService,private tab : TabService) {
     this.dataSetsService.dataSets$.subscribe((data) => {
-      this.hasData = this.dataSetsService.hasDataSets();
+      this.hasData = this.dataSetsService.getNumeroDeMuestras()!=0;
       this.data = data;
       console.log('DataContainerComponent received data:', data);
-      this.checkForUnusedChild();
+    });
+    
+    this.tab.currentTab$.subscribe((data) => {
+      this.title = 'Datos para '+data.replace(/_/g, ' ');
     });
   }
-
-  ngOnChanges() {
-    console.log('DataContainerComponent updated:', this.title, this.data);
-  }
-
-  ngOnDestroy() {
-    if (this.recolectorDeDatosRef) {
-      this.recolectorDeDatosRef.destroy();
-    }
-  }
-
   isAssociative(): boolean {
     return Array.isArray(this.data) && Array.isArray(this.data[0]);
   }
-
-  checkForUnusedChild() {
-    if (this.hasData && this.recolectorDeDatosRef) {
-      this.recolectorDeDatosRef.destroy();
-      this.recolectorDeDatosRef = null;
-    } else if (!this.hasData && !this.recolectorDeDatosRef) {
-      const factory = this.resolver.resolveComponentFactory(RecolectorDeDatosComponent);
-      this.recolectorDeDatosRef = this.recolectorDeDatosContainer.createComponent(factory);
-    }
+  editDataSet(muetra:Muestra){
+    console.log('editando muestra: '+muetra.nombre);
+    
+  }
+  deleteDataSet(muetra:Muestra){
+    console.log('eliminando muestra: '+muetra.nombre);
+  }
+  viewDataSet(muetra:Muestra){
+    console.log('visualizando muestra: '+muetra.nombre);
   }
 }
