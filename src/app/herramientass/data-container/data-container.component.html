@@ -1,6 +1,6 @@
 <div class="card shadow-sm grandota">
   <div class="card-header bg-success text-white text-center w-100">
-    <h5 class="">Muestras  disponibles  para  realizar  calculos</h5>
+    <h5>Muestras disponibles para realizar cálculos</h5>
   </div>
 
   <div class="card-body">
@@ -8,39 +8,52 @@
       <app-recolector-de-datos></app-recolector-de-datos>
     </div>
     <div class="scroll-container">
-          @for(muestra of data ; track $index){
-            <div class="position-relative border rounded shadow-sm bg-light p-2 m-2">
-              <span class="position-absolute top-0 end-0 m-2 text-danger fw-bold cursor-pointer" 
-                    (click)="deleteDataSet(muestra)" 
-                    style="cursor: pointer;">
-                x
-              </span>
-                <div class="d-flex flex-column">
-                <span class="fw-bold">{{ muestra.nombre }}</span>
-                <div class="d-flex mt-2 justify-content-between">
-                  <div>[
-                    @for (item of [].constructor(5); track $index) {
-                      {{muestra.datos[$index]}}
-                      @if($index<4){
-                        ,
-                      }
-                    }    
-                    ...]</div>
-                  <div>
-                    <button class="btn btn-outline-success btn-sm me-1" (click)="editDataSet(muestra)"><i class="bi bi-pencil"></i></button>
-                    <button class="btn btn-outline-success btn-sm" (click)="viewDataSet(muestra)"><i class="bi bi-search"></i></button>
-                  </div>
+      @for(muestra of data; track $index) {
+        <div class="position-relative border rounded shadow-sm bg-light p-2 m-2">
+          <span class="position-absolute top-0 end-0 m-2 text-danger fw-bold cursor-pointer" 
+                (click)="deleteDataSet(muestra)" 
+                style="cursor: pointer;">x</span>
+          <div class="d-flex flex-column">
+            <span class="fw-bold">{{ muestra.nombre }}</span>
+            <div class="d-flex mt-2 justify-content-between">
+              @if(muestra.file) {
+                <div class="d-flex gap-2 justify-content-center p-2">
+                  <i class="text-success bi bi-file-earmark-check"></i>
+                  <a class="text-success decorado">{{ muestra.file.name }}</a>
                 </div>
+              } @else {
+                <div>[
+                  @for(item of muestra.datos; track $index) {
+                    @if(!isExpanded(muestra) && $index <= defaultItems) {
+                      {{ item }}
+                      ,
+                    }@if(isExpanded(muestra)){
+                      {{ item }}
+                      ,
+                    } 
+                  }
+                  <span class="pt" (click)="toggleExpand(muestra)" style="cursor: pointer;">
+                    @if(!isExpanded(muestra)) { ... } @else { ver menos }
+                  </span>
+                  ]
                 </div>
+              }
+              <div>
+                <button class="btn btn-outline-success btn-sm me-1" (click)="editDataSet(muestra)">
+                  <i class="bi bi-pencil"></i>
+                </button>
+              </div>
             </div>
-        }
+          </div>
         </div>
+      } @empty {
+        <h6>Aún no tienes muestras registradas ¡Crea una nueva!</h6>
+      }
+    </div>
   </div>
-  @if(hasData){
-  <div class="card-footer text-muted text-center">
-
-    Total: {{ data.length }} elementos
-
-  </div>
+  @if(hasData) {
+    <div class="card-footer text-muted text-center">
+      Total: {{ data.length }} elementos
+    </div>
   }
 </div>

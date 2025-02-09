@@ -7,7 +7,7 @@
         Agregar datos muestrales
       </p>
       <div class="form-floating mb-3">
-        <input type="text" class="form-control" id="nombreMuestra" placeholder="" />
+        <input type="text" class="form-control" id="nombreMuestra" placeholder="" [formControl]="txtNombreMuestra" />
         <label for="nombreMuestra">Nombre de la muestra</label>
       </div>
       @if (!modoSeleccionado) {
@@ -40,8 +40,50 @@
         @switch (modoSeleccionado) {
           @case ('csv') {
             <div class="d-flex gap-2 justify-content-center p-4">
-                <i class="bi bi-file-earmark-check"></i>
+                <i class="text-success bi bi-file-earmark-check"></i>
                 <a class="text-success decorado" (click)="descargarArchivo()">{{archivo?.name}}</a>
+            </div>
+          }
+          @case ('api') {
+            <div class="mt-3">
+              <h6>Datos de ejemplo:</h6>
+              <div class="d-flex lista" #listaContainer>
+                @for(valor of datosDelApi;track $index){
+                  <div class="xikito">{{ valor }}</div>
+                }
+                @empty {
+                  Hubo un error al recuperar los datos del API
+                }
+              </div>
+            </div>
+          }
+          @case ('manual') {
+            <div class="d-flex align-items-center gap-2 pt-4">
+              <div class="form-floating">
+                <input type="number" class="form-control" id="valorNumerico" [formControl]="txtNuevoDato" (keyup.enter)="agregarValor()" placeholder="123"/>
+                <label for="valorNumerico">Dato:</label>
+                @if(txtNuevoDato.invalid && (txtNuevoDato.dirty || txtNuevoDato.touched)){
+                    <div class="text-danger text-small">
+                      Ingrese un valor numérico válido.
+                    </div>
+                }
+              </div>
+              <button type="button" class="btn btn-outline-success" (click)="agregarValor()">+</button>
+            </div>
+            <div class="mt-3">
+              <h6>Datos de la muestra:</h6>
+              <div class="d-flex lista" #listaContainer>
+                @for(valor of datosManuales;track $index){
+                  <div class="xikito position-relative">
+                    <span class="delete-button text-danger" (click)="eliminarDato($index)">-</span>
+                    {{ valor }}
+                  </div>
+                  
+                }
+                @empty {
+                  Aún no hay datos
+                }
+              </div>
             </div>
           }
           @default {

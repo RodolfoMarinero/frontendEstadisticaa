@@ -55,3 +55,10 @@
 .scroll-container::-webkit-scrollbar-track {
   background: transparent;
 }
+a{
+  cursor: pointer;
+}
+.pt{
+  color: #28a745;
+  cursor: pointer;
+}

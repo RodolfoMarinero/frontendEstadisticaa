@@ -1,83 +1,78 @@
-.select-mat{
-    background-color: #FFF;
-}
-::ng-deep .mat-form-field {
-    background: white; /* Fondo blanco para el campo */
-    color: black; /* Texto negro */
-  }
-  
-  ::ng-deep .mat-select-trigger {
-    background: white;
-    color: black !important; /* Color del texto del select */
-  }
-  
-  ::ng-deep .mat-option {
-    background: rgb(255, 255, 255) !important; /* Fondo blanco en opciones */
-    color: black !important; /* Texto negro en opciones */
-  }
-  
-  /* Asegurar que el fondo de las opciones desplegadas sea blanco */
-  ::ng-deep .mat-select-panel {
-    background-color: white !important;
-  }
-  div .mat-mdc-select-panel{
-    background-color: #FFF;
-  }
-  ::ng-deep .mat-mdc-select-panel {
-    background-color: white !important;
-  }
-  
-  ::ng-deep .mat-mdc-option {
-    color: black !important;
-  }
-  ::ng-deep .mdc-text-field--filled:not(.mdc-text-field--disabled) {
-    background-color: white !important;
-  }
-  
-  ::ng-deep .mat-mdc-select,
-  ::ng-deep .mat-mdc-select .mat-mdc-select-value {
-    color: black !important;
-  }
-  .select-mat {
-    background-color: #FFF;
-    color: black;
+/* Estilos generales */
+.select-mat {
+  background-color: #FFF;
+  color: black;
 }
 
-/* Estilos generales del select */
-::ng-deep .mat-mdc-select {
-    background: white;
-    color: black !important;
+/* Mat Select */
+.mat-mdc-select, 
+.mat-select-trigger, 
+.mat-form-field, 
+.mdc-text-field--filled:not(.mdc-text-field--disabled) {
+  background: white !important;
+  color: black !important;
+  opacity: 1 !important;
+}
+
+/* Etiqueta del campo */
+.mat-form-field-label {
+  color: black !important;
 }
 
 /* Opciones del desplegable */
-::ng-deep .mat-mdc-option {
-    color: black !important;
-    background: white !important;
+.mat-mdc-option, 
+.mat-option {
+  color: black !important;
+  background: white !important;
 }
 
-/* Fondo de las opciones desplegadas */
-::ng-deep .mat-mdc-select-panel {
-    background-color: white !important;
+/* Fondo del panel de opciones */
+.mat-mdc-select-panel {
+  background-color: white !important;
+  color: black !important;
 }
 
-/* Aplicar un fondo "success subtle" cuando una opción esté seleccionada */
-::ng-deep .mat-mdc-option.mat-mdc-option-active {
-    background-color: #13b140!important;
-    color: black !important;
-    :hover{
-      color: black;
-    }
+/* Opción seleccionada */
+.mat-mdc-option.mat-mdc-option-active,
+.mat-mdc-option:hover {
+  background-color: #13b140 !important;
+  color: black !important;
 }
 
-/* También cambiar el fondo cuando la opción esté en foco (hover) */
-::ng-deep .mat-mdc-option:hover {
-    background-color: #13b14054 !important;
-    color: black;
+/* Hover sobre opciones */
+.mat-mdc-option:hover {
+  background-color: #13b14054 !important;
 }
-::ng-deep .mat-mdc-option.mdc-list-item--selected:not(.mdc-list-item--disabled):not(.mat-mdc-option-multiple) 
+
+/* Texto de opción seleccionada */
+.mat-mdc-option.mdc-list-item--selected:not(.mdc-list-item--disabled):not(.mat-mdc-option-multiple) 
 .mdc-list-item__primary-text {
-    color: black !important; /* Cambia el color del texto a negro */
+  color: black !important;
+}
+mat-label{
+  color: black;
+}
+mat-select{
+  color: black;
+  border-bottom: black;
+}
+/* Color negro por defecto */
+.mat-mdc-select-arrow {
+  color: black !important;
 }
 
-  
-    
+/* Cambiar a verde cuando el select está enfocado o abierto */
+.mat-mdc-select:focus .mat-mdc-select-arrow,
+.mat-mdc-select.mat-mdc-select-focused .mat-mdc-select-arrow,
+.mat-mdc-select.mat-mdc-select-panel-open .mat-mdc-select-arrow {
+  color: #13b140 !important;
+}
+
+/* Color negro por defecto para el borde inferior */
+.mat-mdc-form-field.mat-mdc-select .mat-mdc-form-field-underline {
+  border-bottom: 1px solid black !important;
+}
+
+.mat-form-field.mat-focused .mat-form-field-underline {
+  background-color:  #13b140 !important;
+}

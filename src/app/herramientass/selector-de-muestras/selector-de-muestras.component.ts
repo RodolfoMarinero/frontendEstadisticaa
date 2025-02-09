@@ -1,33 +1,38 @@
-import { Component, EventEmitter, Output } from '@angular/core';
+import { Component, EventEmitter, Output, ViewEncapsulation } from '@angular/core';
 import { TabService } from '../../services/tab.service';
 import { DataSetsService } from '../../services/data-sets.service';
 import { MatSelectModule } from '@angular/material/select';
 import { Muestra } from '../../interfaces/Muestra';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { CalculadorService } from '../../services/calculador.service';
+import { FormBuilder, FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-selector-de-muestras',
   standalone: true,
-  imports: [MatSelectModule, MatFormFieldModule],
+  imports: [MatSelectModule, MatFormFieldModule, ReactiveFormsModule],
   templateUrl: './selector-de-muestras.component.html',
-  styleUrl: './selector-de-muestras.component.css'
+  styleUrl: './selector-de-muestras.component.css',
+  encapsulation:ViewEncapsulation.None
 })
 export class SelectorDeMuestrasComponent {
   muestrasRegistradas: Muestra[] = [];
   nombreMedida: string = '';
   cantidadDeMuestrasNecesarias: number = 0;
+  muestras!:FormGroup;
 
   @Output() resultadoCalculado = new EventEmitter<any>(); // Emitimos el resultado
 
   constructor(
-    private tab: TabService,
-    private dataSets: DataSetsService,
-    private calculadora: CalculadorService
+    tab: TabService,
+    dataSets: DataSetsService,
+    private calculadora: CalculadorService,
+    private fb : FormBuilder
   ) { 
     tab.currentTab$.subscribe((tab) => {
       this.nombreMedida = tab.replace(/_/g, ' ');
       this.cantidadDeMuestrasNecesarias = tab === 'medidas_asociativas' ? 2 : 1;
+      this.construirFormulario();
     });
 
     dataSets.dataSets$.subscribe((data) => {
@@ -35,15 +40,26 @@ export class SelectorDeMuestrasComponent {
       console.log('Muestras registradas actualizadas:', this.muestrasRegistradas);
     });
   }
+  construirFormulario(){
+    if(this.cantidadDeMuestrasNecesarias==1){
+      this.muestras=this.fb.group({
+        optMuestra1 : [,Validators.required]
+      });
+    }else{
+      this.muestras=this.fb.group({
+        optMuestra1 : [,Validators.required],
+        optMuestra2 : [,Validators.required]
+      });
+    }
+  }
 
   calcular(): void {
     let muestras: Muestra[];
     if (this.cantidadDeMuestrasNecesarias == 2) {
-      muestras = [this.muestrasRegistradas[0],this.muestrasRegistradas[1]]
+      muestras = [this.muestras.get('optMuestra1')?.value,this.muestras.get('optMuestra2')?.value]
     }else{
-      muestras = [this.muestrasRegistradas[0]]
+      muestras = [this.muestras.get('optMuestra1')?.value]
     }
-
     this.calculadora.realizarCalculo(muestras).subscribe((data) => {
       this.resultadoCalculado.emit(data);
       console.log('Resultado del cálculo:', data);

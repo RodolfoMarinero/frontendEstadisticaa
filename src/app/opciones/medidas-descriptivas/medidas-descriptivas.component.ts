@@ -13,19 +13,21 @@ import { MedidasDescriptivas, Muestra } from '../../interfaces/Muestra';
 })
 export class MedidasDescriptivasComponent {
   existDataSets: boolean = false;
-  medidas!:MedidasDescriptivas;
+  medidas:MedidasDescriptivas={
+    desviacionEstandar:0,
+    media:0,
+    mediana:0,
+    moda:[0],
+    varianza:0
+  };
   datos: Muestra[] = [];
-  constructor(private servicioDataSets : DataSetsService,private modalService:ModalService) { 
-    this.servicioDataSets.dataSets$.subscribe((data) => {
-      this.existDataSets=servicioDataSets.getNumeroDeMuestras()==2;
-    });
+  constructor(private modalService:ModalService) { 
   }
   openModal(medida:string){
     this.modalService.abrirModal(medida);
   }
   llenarTabla(datos:any){
     console.log('datos recibidos'+datos);
-    
     this.medidas=datos;
     this.existDataSets=true;
   }

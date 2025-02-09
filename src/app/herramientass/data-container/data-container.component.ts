@@ -1,4 +1,4 @@
-import { Component} from '@angular/core';
+import { Component } from '@angular/core';
 import { DataSetsService } from '../../services/data-sets.service';
 import { RecolectorDeDatosComponent } from '../recolector-de-datos/recolector-de-datos.component';
 import { TabService } from '../../services/tab.service';
@@ -15,28 +15,54 @@ export class DataContainerComponent {
   title: string = '';
   data: Muestra[] = [];
   hasData: boolean = false;
-  constructor(private dataSetsService: DataSetsService,private tab : TabService) {
+  // Número de datos a mostrar por defecto
+  defaultItems: number = 3;
+  // Para cada muestra (identificada por su id) se indica si está expandida
+  expandedSet: Set<number> = new Set<number>();
+
+  constructor(
+    private dataSetsService: DataSetsService,
+    private tab: TabService
+  ) {
     this.dataSetsService.dataSets$.subscribe((data) => {
-      this.hasData = this.dataSetsService.getNumeroDeMuestras()!=0;
+      this.hasData = this.dataSetsService.getNumeroDeMuestras() !== 0;
       this.data = data;
       console.log('DataContainerComponent received data:', data);
     });
-    
+
     this.tab.currentTab$.subscribe((data) => {
-      this.title = 'Datos para '+data.replace(/_/g, ' ');
+      this.title = 'Datos para ' + data.replace(/_/g, ' ');
     });
   }
-  isAssociative(): boolean {
-    return Array.isArray(this.data) && Array.isArray(this.data[0]);
+
+  // Método para alternar el estado expandido de una muestra
+  toggleExpand(muestra: Muestra): void {
+    if (this.expandedSet.has(muestra.id)) {
+      this.expandedSet.delete(muestra.id);
+    } else {
+      this.expandedSet.add(muestra.id);
+    }
   }
-  editDataSet(muetra:Muestra){
-    console.log('editando muestra: '+muetra.nombre);
-    
+
+  // Devuelve true si la muestra está marcada como expandida
+  isExpanded(muestra: Muestra): boolean {
+    return this.expandedSet.has(muestra.id);
   }
-  deleteDataSet(muetra:Muestra){
-    console.log('eliminando muestra: '+muetra.nombre);
+
+  // Métodos para editar y eliminar (según tu lógica)
+  editDataSet(muestra: Muestra): void {
+    console.log('Editando muestra: ' + muestra.nombre);
   }
-  viewDataSet(muetra:Muestra){
-    console.log('visualizando muestra: '+muetra.nombre);
+
+  deleteDataSet(muestra: Muestra): void {
+    this.dataSetsService.deleteMuestra(muestra.id);
+  }
+  
+  // Método para mostrar todos los datos en la muestra actual (alternativamente, se usa toggleExpand)
+  expandir(muestra: Muestra): void {
+    // Si no está expandida, la expandimos (se muestran todos los datos)
+    if (!this.isExpanded(muestra)) {
+      this.expandedSet.add(muestra.id);
+    }
   }
 }

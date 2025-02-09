@@ -18,7 +18,7 @@
 }
 .botoncito:hover {
     transform: scale(1.05);
-    color: red;
+    color: var(--bs-success);
 }
 .decorado{
     cursor: pointer;
@@ -26,4 +26,61 @@
 .border-success {
     border: 1px solid var(--bs-success);
     border-radius: 15px;
+}
+.xikito{
+    min-width: 21%;
+    height: 50px;
+    border-style: solid;
+    max-width: max-content;
+    color: var(--bs-success);
+    border-color: var(--bs-success);
+    margin: 3px;
+    border-radius: 15px;
+    border-width: 1px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+.xikito .delete-button {
+    border: 1px solid var(--bs-success);
+    cursor: pointer;
+    position: absolute;
+    top: -5px;
+    right: -4px;
+    z-index: 10;
+    height: 15px;
+    width: 15px;
+    border-radius: 5px;
+    background-color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding-bottom: 2px;
+    user-select: none;
+  }
+  
+.lista {
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+    flex-wrap: wrap;
+    border: 1px solid var(--bs-success);
+    border-radius: 15px;
+    padding: 4px;
+    max-height: 20vh;
+    overflow: auto;
+}
+.lista::-webkit-scrollbar {
+    width: 5px;
+}
+  
+.lista::-webkit-scrollbar-thumb {
+    background-color: #28a74665;
+    border-radius: 10px;
+    background-clip:padding-box ;
+}
+.text-small{
+    font-size: smaller;
 }
