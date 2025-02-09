@@ -5,7 +5,7 @@
 
   <div class="card-body">
     <div>
-      <app-recolector-de-datos [titleLess]="true"></app-recolector-de-datos>
+      <app-recolector-de-datos></app-recolector-de-datos>
     </div>
     <div class="scroll-container">
           @for(muestra of data ; track $index){
@@ -20,7 +20,7 @@
                 <div class="d-flex mt-2 justify-content-between">
                   <div>[
                     @for (item of [].constructor(5); track $index) {
-                      {{muestra.data[$index]}}
+                      {{muestra.datos[$index]}}
                       @if($index<4){
                         ,
                       }

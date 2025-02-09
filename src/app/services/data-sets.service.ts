@@ -14,11 +14,11 @@ export class DataSetsService {
   constructor(private storageService: StorageService) {
     this._dataSetsSubject.next(this.loadStoredData());
     if(this._dataSetsSubject.getValue().length==0){
-      this.addMuestra({id:1,nombre:'datos de la piña',data:[1,2,5,7,3,83,3,67,8]});
-      this.addMuestra({id:2,nombre:'datos del arroz',data:[1,2,5,7,3,83,3,67,8]});
-      this.addMuestra({id:3,nombre:'datos de perros',data:[1,2,5,7,3,83,3,67,8]});
-      this.addMuestra({id:4,nombre:'datos de peso',data:[1,2,5,7,3,83,3,67,8]});
-      this.addMuestra({id:5,nombre:'datos de estatura',data:[1,2,5,7,3,83,3,67,8]});
+      this.addMuestra({id:1,nombre:'datos de la piña',datos:[1,2,5,7,3,83,3,67,8]});
+      this.addMuestra({id:2,nombre:'datos del arroz',datos:[1,2,5,7,3,83,3,67,8]});
+      this.addMuestra({id:3,nombre:'datos de perros',datos:[1,2,5,7,3,83,3,67,8]});
+      this.addMuestra({id:4,nombre:'datos de peso',datos:[1,2,5,7,3,83,3,67,8]});
+      this.addMuestra({id:5,nombre:'datos de estatura',datos:[1,2,5,7,3,83,3,67,8]});
       console.log(JSON.stringify(this._dataSetsSubject.getValue()));
       
     }
@@ -38,7 +38,7 @@ export class DataSetsService {
   }
   public updateMuestra(id: number, newData: number[]): void {
     const updatedDataSets = this._dataSetsSubject.value.map(muestra =>
-      muestra.id === id ? { ...muestra, data: newData } : muestra
+      muestra.id === id ? { ...muestra, datos: newData } : muestra
     );
     this.updateStorageAndNotify(updatedDataSets);
   }

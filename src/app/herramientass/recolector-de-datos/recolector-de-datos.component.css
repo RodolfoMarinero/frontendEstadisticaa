@@ -12,7 +12,17 @@
 .btn-recolector{
     height: 50px;
 }
-
+.botoncito{
+    cursor: pointer;
+    transition: transform 0.3s ease, background-color 0.3s ease;
+}
+.botoncito:hover {
+    transform: scale(1.05);
+    color: red;
+}
+.decorado{
+    cursor: pointer;
+}
 .border-success {
     border: 1px solid var(--bs-success);
     border-radius: 15px;

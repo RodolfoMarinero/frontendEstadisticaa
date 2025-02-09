@@ -16,4 +16,13 @@
     text-align: center;
     padding: 10px;
   }
-  
+  .btn-outline-success {
+    transition: all 0.5s ease;
+}
+.btn-outline-success span {
+    display: none;
+}
+
+.btn-outline-success:hover span {
+    display: inline;
+}

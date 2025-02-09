@@ -1,7 +1,8 @@
 export interface Muestra {
     id: number;
     nombre:string;
-    data: number[];
+    datos: number[];
+    file?: File;
   }
   export interface MedidasAsociacion {
     correlacion: number;

@@ -1,65 +1,76 @@
 <div class="container my-3">
+  <!-- Si se está agregando un nuevo set de datos -->
   @if(nuevo){
-
-    <div class="border-success card-body ">
-      <p class="text-center font-weight-bold">Agregar datos muestrales</p>
+  <div>
+    <div class="border-success card-body">
+      <p class="text-center font-weight-bold">
+        Agregar datos muestrales
+      </p>
       <div class="form-floating mb-3">
-        <input type="text" class="form-control" id="nombreMuestra"placeholder="">
-        <label for="floatingInput">nombre de la muestra</label>
+        <input type="text" class="form-control" id="nombreMuestra" placeholder="" />
+        <label for="nombreMuestra">Nombre de la muestra</label>
       </div>
+      @if (!modoSeleccionado) {
       <div class="my-3 p-4">
-      <div class="d-flex gap-2 justify-content-center">
-          <button
-            class="btn btn-outline-success d-flex align-items-center gap-2"
-            (click)="importarDesdeCSV()"
-          >
+        <div class="d-flex gap-2 justify-content-center">
+          <!-- Input file oculto -->
+          <input type="file" #fileInput hidden (change)="onFileSelected($event)" />
+          <button type="button" class="btn btn-outline-success d-flex align-items-center gap-2"
+            (click)="fileInput.click()">
             <i class="bi bi-file-earmark-arrow-up"></i>
             <span>Desde CSV</span>
           </button>
-          <button
-            class="btn btn-outline-success d-flex align-items-center gap-2"
-            (click)="importarDesdeAPI()"
-          >
+
+          <button type="button" class="btn btn-outline-success d-flex align-items-center gap-2"
+            (click)="setModo('api')">
             <i class="bi bi-cloud-arrow-up"></i>
             <span>Precargados</span>
           </button>
-          <button
-            class="btn btn-outline-success d-flex align-items-center gap-2"
-            (click)="ingresarManual()"
-          >
+          <button type="button" class="btn btn-outline-success d-flex align-items-center gap-2"
+            (click)="setModo('manual')">
             <i class="bi bi-pencil"></i>
             <span>Ingreso manual</span>
           </button>
+        </div>
+      </div>
+      }@else{
+        <div class="position-relative">
+          <i class="bi bi-arrow-left position-absolute top-0 end-0 botoncito" (click)="cambiarFormaDeAgregar()"></i>
+        </div>
+        @switch (modoSeleccionado) {
+          @case ('csv') {
+            <div class="d-flex gap-2 justify-content-center p-4">
+                <i class="bi bi-file-earmark-check"></i>
+                <a class="text-success decorado" (click)="descargarArchivo()">{{archivo?.name}}</a>
+            </div>
+          }
+          @default {
+            <h3>hola, aún trabajo en esto</h3>
+          }
+        }
+      }
 
-      </div>
-      </div>
+      <!-- Botones de acción comunes (Agregar y Cancelar) -->
       <div class="d-flex justify-content-end my-3">
-        <button
-          class="btn btn-outline-danger d-flex align-items-center gap-2"
-          (click)="cancelar()"
-        >
+        <button type="button" class="btn btn-outline-danger d-flex align-items-center gap-2" (click)="cancelar()">
           <i class="bi bi-x-circle"></i>
           <span>Cancelar</span>
         </button>
-        <button
-          class="btn btn-outline-success d-flex align-items-center gap-2"
-          (click)="agregar()"
-        >
+        <button type="button" class="btn btn-outline-success d-flex align-items-center gap-2" (click)="agregar()"
+          [disabled]="deshabilitarAgregar()">
           <i class="bi bi-plus-circle"></i>
           Agregar
         </button>
       </div>
     </div>
-    
-    }@else {
-      <div class="d-flex justify-content-center">
-        <button
-          class="btn btn-outline-success d-flex align-items-center gap-2"
-          (click)="nuevoSetDeDatos()"
-        >
-          <i class="bi bi-plus-circle"></i>
-          Nuevo set de datos
-        </button>
-      </div>
-    }
+  </div>
+  }
+  @else {
+  <div class="d-flex justify-content-center">
+    <button type="button" class="btn btn-outline-success d-flex align-items-center gap-2" (click)="nuevoSetDeDatos()">
+      <i class="bi bi-plus-circle"></i>
+      Nuevo set de datos
+    </button>
+  </div>
+  }
 </div>

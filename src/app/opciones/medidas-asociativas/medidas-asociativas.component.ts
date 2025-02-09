@@ -30,4 +30,11 @@ export class MedidasAsociativasComponent {
     this.medidas=datos;
     this.existDataSets=true;
   }
+  volver(){
+    this.existDataSets=false;
+    this.medidas={
+      correlacion: 0,
+      covarianza: 0,
+      coeficienteCorrelacion: 0};
+  }
 }

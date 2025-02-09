@@ -29,4 +29,14 @@ export class MedidasDescriptivasComponent {
     this.medidas=datos;
     this.existDataSets=true;
   }
+  volver(){
+    this.existDataSets=false;
+    this.medidas = {
+      desviacionEstandar:0,
+      media:0,
+      mediana:0,
+      moda:[0],
+      varianza:0
+    }
+    }
 }

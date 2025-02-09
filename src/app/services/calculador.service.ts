@@ -1,13 +1,14 @@
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
 import { MedidasAsociacion, MedidasDescriptivas, Muestra } from '../interfaces/Muestra';
+import { HttpClient } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
 })
 export class CalculadorService {
 
-  constructor() { }
+  constructor(private httpClient:HttpClient) { }
 
   private getMedidasAsociativas(): Observable<MedidasAsociacion> {
     const medidasAsociacion: MedidasAsociacion = {

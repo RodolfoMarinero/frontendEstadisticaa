@@ -1,0 +1,1 @@
+export const APIURL = "localhost:8080/api/estadisticas";

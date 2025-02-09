@@ -13,17 +13,32 @@ import { Muestra } from '../../interfaces/Muestra';
   styleUrls: ['./recolector-de-datos.component.css'],
 })
 export class RecolectorDeDatosComponent {
-  @Input() titleLess: boolean = false;
-  private _cantidadDeMuestrasNecesarias: number = 0;
+  datosManuales:number[]=[];
+  datosDelApi:number[]=[];
+  archivo:File|null=null;
+  modoSeleccionado: 'csv' | 'api' | 'manual' | null = null
   nuevo:boolean=false;
-  constructor(private servicioDataSets : DataSetsService,private tabService:TabService) {
-    this.tabService.currentTab$.subscribe((data) => {
-      this._cantidadDeMuestrasNecesarias=data === 'medidas_asociativas' ? 2 : 1;
-      console.log('Cantidad de muestras:', this._cantidadDeMuestrasNecesarias);
-    });
+  constructor(private servicioDataSets : DataSetsService) {
   }
-  muestras: Muestra[] = [];
+  setModo(modo: 'csv' | 'api' | 'manual') {
+    this.modoSeleccionado = modo;
+    this.datosManuales = [];
+    this.datosDelApi = [];
+    if (modo !== 'csv') {
+      this.archivo = null;
+    }
+  }
 
+  onFileSelected(event: Event): void {
+    const input = event.target as HTMLInputElement;
+    if (!input.files || input.files.length === 0) {
+      return;
+    }
+    const file = input.files[0];
+    console.log('Archivo seleccionado:', file);
+    this.setModo('csv');
+    this.archivo=file;
+  }
   importarDesdeCSV(): void {
     // Simulación de importación desde CSV
     alert(`Importando datos desde CSV`);
@@ -41,6 +56,18 @@ export class RecolectorDeDatosComponent {
     alert(`Importando datos de manera manual`);
     //this.servicioDataSets.addMuestra(this.muestras[0]);
   }
+  cambiarFormaDeAgregar(){
+    this.modoSeleccionado=null;
+  }
+  deshabilitarAgregar(){
+    if (this.modoSeleccionado === 'csv') {
+      return !this.archivo;
+    }
+    if (this.modoSeleccionado === 'api' || this.modoSeleccionado === 'manual') {
+      return this.datosManuales.length === 0;
+    }
+    return true;
+  }
   agregar():void{
 
   }
@@ -48,6 +75,20 @@ export class RecolectorDeDatosComponent {
     this.nuevo=true;
   }
   cancelar(){
+    this.cambiarFormaDeAgregar();
     this.nuevo=false;
+  }
+  descargarArchivo() {
+    if (!this.archivo) {
+      alert('No hay archivo para descargar');
+      return;
+    }
+
+    const url = window.URL.createObjectURL(this.archivo);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = this.archivo.name;
+    a.click();
+    window.URL.revokeObjectURL(url);
   }
 }
