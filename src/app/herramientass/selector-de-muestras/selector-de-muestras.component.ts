@@ -6,6 +6,7 @@ import { Muestra } from '../../interfaces/Muestra';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { CalculadorService } from '../../services/calculador.service';
 import { FormBuilder, FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { error } from 'jquery';
 
 @Component({
   selector: 'app-selector-de-muestras',
@@ -16,6 +17,7 @@ import { FormBuilder, FormControl, FormGroup, ReactiveFormsModule, Validators } 
   encapsulation:ViewEncapsulation.None
 })
 export class SelectorDeMuestrasComponent {
+  errorFeedBack!:string;
   muestrasRegistradas: Muestra[] = [];
   nombreMedida: string = '';
   cantidadDeMuestrasNecesarias: number = 0;
@@ -52,7 +54,6 @@ export class SelectorDeMuestrasComponent {
       });
     }
   }
-
   calcular(): void {
     let muestras: Muestra[];
     if (this.cantidadDeMuestrasNecesarias == 2) {
@@ -60,9 +61,17 @@ export class SelectorDeMuestrasComponent {
     }else{
       muestras = [this.muestras.get('optMuestra1')?.value]
     }
-    this.calculadora.realizarCalculo(muestras).subscribe((data) => {
-      this.resultadoCalculado.emit(data);
-      console.log('Resultado del cálculo:', data);
+
+    this.calculadora.realizarCalculo(muestras).subscribe({
+      next: (data) => {
+        this.resultadoCalculado.emit(data);
+        console.log('Resultado del cálculo:', data);
+      },
+      error: (err) => {
+        this.errorFeedBack = err.error?.error || 'Ocurrió un error inesperado';
+        console.error('Error en el cálculo:', this.errorFeedBack);
+      }
     });
+    
   }
 }

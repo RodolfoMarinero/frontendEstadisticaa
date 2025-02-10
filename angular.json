@@ -34,7 +34,8 @@
               "node_modules/highlight.js/styles/vs.css"
             ],
             "scripts": [
-              "node_modules/mathjax/es5/tex-mml-chtml.js"
+              "node_modules/mathjax/es5/tex-mml-chtml.js",
+              "node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"
             ]
           },
           "configurations": {

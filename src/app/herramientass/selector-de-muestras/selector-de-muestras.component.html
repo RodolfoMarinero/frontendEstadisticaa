@@ -24,9 +24,22 @@
     }
   </div>
     <div class="text-center mt-4">
-        <button class="btn btn-success d-flex align-items-center gap-2 mx-auto" (click)="calcular()">
+        <button class="btn btn-success d-flex align-items-center gap-2 mx-auto" 
+        [disabled]="!muestras.valid"
+        (click)="calcular()">
             <i class="bi bi-calculator"></i>
             Calcular medidas estadísticas
         </button>
+        @if(!muestras.valid){
+          <div class="alert alert-danger mt-3">
+          Es obligatorio seleccionar la muestra.
+        </div>
+        }
+        @if(errorFeedBack){
+          <div class="alert alert-danger mt-3">
+            {{errorFeedBack}}.
+          </div>
+        }
+        
     </div>
 </div>

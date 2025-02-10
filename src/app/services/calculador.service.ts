@@ -27,19 +27,15 @@ export class CalculadorService {
 
 private getMedidasAsociativas(muestra1: Muestra, muestra2: Muestra): Observable<MedidasAsociacion> {
     const formData = new FormData();
-
-    formData.append("muestra1.id", muestra1.id+"");
-    formData.append("muestra1.nombre", muestra1.nombre);
-    formData.append("muestra1.datos", JSON.stringify(muestra1.datos));
+    formData.append("id", muestra1.id+"");
+    formData.append("nombre", muestra1.nombre);
+    formData.append("datos1", JSON.stringify(muestra1.datos));
     if (muestra1.file) {
-        formData.append("muestra1.file", muestra1.file);
+        formData.append("file1", muestra1.file);
     }
-
-    formData.append("muestra2.id", muestra2.id+"");
-    formData.append("muestra2.nombre", muestra2.nombre);
-    formData.append("muestra2.datos", JSON.stringify(muestra2.datos));
+    formData.append("datos2", JSON.stringify(muestra2.datos));
     if (muestra2.file) {
-        formData.append("muestra2.file", muestra2.file);
+        formData.append("file2", muestra2.file);
     }
 
     return this.httpClient.post<MedidasAsociacion>(APIURL + "/procesar-csv-doble", formData);

@@ -30,7 +30,9 @@
       <tr>
         <td class="borderless"><a (click)="openModal('moda')" ><i class="bi bi-search detallesTD" ></i></a></td>
         <td>Moda</td>
-        <td>{{ medidas.moda.length ? medidas.moda.join(', ') : 'Sin moda' }}</td>
+        <td>
+          {{ medidas.moda[0]!=-1 ? medidas.moda.join(', ') : 'Sin moda' }}
+        </td>
       </tr>
       <tr>
         <td class="borderless"><a (click)="openModal('varianza')" ><i class="bi bi-search detallesTD" ></i></a></td>
