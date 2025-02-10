@@ -13,7 +13,7 @@
             <mat-form-field>
             <mat-label>Muestra</mat-label>
             <mat-select [formControlName]="'optMuestra' + ($index + 1)">
-          @for (muestra of muestrasRegistradas; track $index) {
+          @for (muestra of muestrasFiltradas($index); track $index) {
             <mat-option [value]="muestra">{{muestra.nombre}}</mat-option>
           }
             </mat-select>

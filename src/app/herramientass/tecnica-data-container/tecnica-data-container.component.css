@@ -1,0 +1,55 @@
+.grandota{
+    width: 100%;
+    max-width: 100%;
+  }
+  .scroll-container {
+    max-height: 49vh;
+    overflow-y: auto;
+    border-style: solid;
+    border-width: 1px;
+    border-radius: 15px;
+    border-color: #28a745;
+  }
+  
+  .scroll-container::-webkit-scrollbar {
+    width: 5px;
+  }
+  
+  .scroll-container::-webkit-scrollbar-thumb {
+    background-color: #28a74665;
+    border-radius: 10px;
+    background-clip:padding-box ;
+  }
+  
+  .scroll-container::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  .consulta{
+    border-style: solid;
+    border-width: 1px;
+    border-radius: 15px;
+    border-color: #28a745;
+    padding: 10px;
+  }
+.consulta-detalle {
+    border-style: solid;
+    border-width: 1px;
+    border-radius: 15px;
+    border-color: #28a745;
+    padding: 10px;
+    margin-top: 10px;
+}
+h6{
+    border-radius: 15px;
+}
+.per{
+    background-color: blue;
+    color: white;
+}
+.comb{
+    background-color: #28a745;
+    color: white;
+}
+strong{
+    color: #28a745;
+}

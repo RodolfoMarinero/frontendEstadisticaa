@@ -72,6 +72,23 @@ export class SelectorDeMuestrasComponent {
         console.error('Error en el cálculo:', this.errorFeedBack);
       }
     });
-    
+  }
+  muestrasFiltradas(indice:number):Muestra[]{
+    let seleccionado:Muestra;
+    if(this.cantidadDeMuestrasNecesarias==1){
+      return this.muestrasRegistradas;
+    }
+    if (this.muestras.get('optMuestra1')?.value == null && indice==1) {
+      return this.muestrasRegistradas;
+    }else if(this.muestras.get('optMuestra2')?.value == null && indice==0){
+      return this.muestrasRegistradas;
+    }
+    if(indice==0){
+      seleccionado = this.muestras.get('optMuestra2')?.value;
+      return  this.muestrasRegistradas.filter(m=>m.id!=seleccionado.id);
+    }else{
+      seleccionado = this.muestras.get('optMuestra1')?.value;
+      return  this.muestrasRegistradas.filter(m=>m.id!=seleccionado.id);
+    }
   }
 }

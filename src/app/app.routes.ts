@@ -17,6 +17,5 @@ export const routes: Routes = [
       { path: 'tecnicas_conteo', component: TecnicasDeConteoComponent },
     ],
   },
-
   { path: '**', redirectTo: 'portada', pathMatch: 'full' },
 ];

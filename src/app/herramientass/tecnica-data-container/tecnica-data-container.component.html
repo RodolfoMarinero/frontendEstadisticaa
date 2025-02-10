@@ -1,0 +1,56 @@
+<div class="card shadow-sm grandota">
+    <div class="card-header bg-success text-white text-center w-100">
+      <h5>
+        Historial de calculos
+      </h5>
+    </div>
+    <div class="card-body">
+        <div class="mb-3">
+            <h6>Última consulta</h6>
+            @if (ultimaConsulta) {
+                <div class="consulta">
+                @if(ultimaConsulta.tipo=="combinacion"){
+                    <h6 class="comb p-2 text-center">Combinación</h6>
+                    <div class="consulta-detalle">
+                        <p>Seleccionando <strong>{{ultimaConsulta.r}}</strong> elementos de <strong>{{ultimaConsulta.n}}</strong>.</p>
+                        <p>Se pueden tener <strong>{{ultimaConsulta.resultado}}</strong> combinaciones distintas.</p>
+                    </div>
+                }@else {
+                    <h6 class="per p-2 text-center">Permutación</h6>
+                    <div class="consulta-detalle">
+                        <p>Seleccionando <strong>{{ultimaConsulta.r}}</strong> elementos de <strong>{{ultimaConsulta.n}}</strong>.</p>
+                        <p>Se pueden tener <strong>{{ultimaConsulta.resultado}}</strong> permutaciones distintas.</p>
+                    </div>                }   
+            </div>
+            }@else {
+                <div class="consulta">
+                    ¡No hay información antigua!
+                </div>
+            }
+        </div>
+        <div>
+            <h6>Consultas anteriores</h6>
+            <div class="scroll-container">
+            @for (item of anteriores; track $index) {
+                @if(item.tipo=="combinacion"){
+                    <h6 class="comb p-2 text-center">Combinación</h6>
+                    <div class="consulta-detalle">
+                        <p>Seleccionando <strong>{{item.r}}</strong> elementos de <strong>{{item.n}}</strong>.</p>
+                        <p>Se pueden tener <strong>{{item.resultado}}</strong> combinaciones distintas.</p>
+                    </div>
+                }@else {
+                    <h6 class="per p-2 text-center">Permutación</h6>
+                    <div class="consulta-detalle">
+                        <p>Seleccionando <strong>{{item.r}}</strong> elementos de <strong>{{item.n}}</strong>.</p>
+                        <p>Se pueden tener <strong>{{item.resultado}}</strong> permutaciones distintas.</p>
+                    </div>
+                }   
+            }@empty {
+                <div class="consulta">
+                    Aún no tienes historial ¡Realiza una consulta!
+                </div>
+            }
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,6 +1,8 @@
 <div class="card shadow-sm grandota">
   <div class="card-header bg-success text-white text-center w-100">
-    <h5>Muestras disponibles para realizar cálculos</h5>
+    <h5>
+      Muestras disponibles para realizar cálculos
+    </h5>
   </div>
 
   <div class="card-body">
@@ -39,9 +41,16 @@
                 </div>
               }
               <div>
-                <button class="btn btn-outline-success btn-sm me-1" (click)="editDataSet(muestra)">
-                  <i class="bi bi-pencil"></i>
-                </button>
+                @if(!muestra.file){
+                  <button class="btn btn-outline-success btn-sm me-1" (click)="editDataSet(muestra)">
+                    <i class="bi bi-pencil"></i>
+                  </button>
+                }@else {
+                  <button class="btn btn-outline-success btn-sm me-1" (click)="descargarArchivo(muestra)">
+                    <i class="bi bi-download"></i>
+                  </button>
+                }
+                
               </div>
             </div>
           </div>

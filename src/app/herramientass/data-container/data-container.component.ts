@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { DataSetsService } from '../../services/data-sets.service';
 import { RecolectorDeDatosComponent } from '../recolector-de-datos/recolector-de-datos.component';
 import { TabService } from '../../services/tab.service';
@@ -15,27 +15,19 @@ export class DataContainerComponent {
   title: string = '';
   data: Muestra[] = [];
   hasData: boolean = false;
-  // Número de datos a mostrar por defecto
   defaultItems: number = 3;
-  // Para cada muestra (identificada por su id) se indica si está expandida
   expandedSet: Set<number> = new Set<number>();
-
+  @ViewChild(RecolectorDeDatosComponent) recolectorDeDatosComponent!: RecolectorDeDatosComponent;
   constructor(
     private dataSetsService: DataSetsService,
-    private tab: TabService
   ) {
     this.dataSetsService.dataSets$.subscribe((data) => {
       this.hasData = this.dataSetsService.getNumeroDeMuestras() !== 0;
       this.data = data;
       console.log('DataContainerComponent received data:', data);
     });
-
-    this.tab.currentTab$.subscribe((data) => {
-      this.title = 'Datos para ' + data.replace(/_/g, ' ');
-    });
   }
 
-  // Método para alternar el estado expandido de una muestra
   toggleExpand(muestra: Muestra): void {
     if (this.expandedSet.has(muestra.id)) {
       this.expandedSet.delete(muestra.id);
@@ -43,26 +35,33 @@ export class DataContainerComponent {
       this.expandedSet.add(muestra.id);
     }
   }
-
-  // Devuelve true si la muestra está marcada como expandida
   isExpanded(muestra: Muestra): boolean {
     return this.expandedSet.has(muestra.id);
   }
 
-  // Métodos para editar y eliminar (según tu lógica)
   editDataSet(muestra: Muestra): void {
     console.log('Editando muestra: ' + muestra.nombre);
+    this.recolectorDeDatosComponent.editarMuestra(muestra);
   }
 
   deleteDataSet(muestra: Muestra): void {
     this.dataSetsService.deleteMuestra(muestra.id);
   }
-  
-  // Método para mostrar todos los datos en la muestra actual (alternativamente, se usa toggleExpand)
   expandir(muestra: Muestra): void {
-    // Si no está expandida, la expandimos (se muestran todos los datos)
     if (!this.isExpanded(muestra)) {
       this.expandedSet.add(muestra.id);
     }
+  }
+  descargarArchivo(muestra:Muestra) {
+    if (!muestra.file) {
+      alert('No hay archivo para descargar');
+      return;
+    }
+    const url = window.URL.createObjectURL(muestra.file);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = muestra.file.name;
+    a.click();
+    window.URL.revokeObjectURL(url);
   }
 }

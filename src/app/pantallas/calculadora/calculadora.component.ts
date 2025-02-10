@@ -4,6 +4,7 @@ import { DataContainerComponent } from '../../herramientass/data-container/data-
 import { DataSetsService } from '../../services/data-sets.service';
 import { TabService } from '../../services/tab.service';
 import { Toast } from 'bootstrap';
+import { TecnicaDataContainerComponent } from '../../herramientass/tecnica-data-container/tecnica-data-container.component';
 
 @Component({
   selector: 'app-calculadora',
@@ -12,7 +13,8 @@ import { Toast } from 'bootstrap';
     RouterLink,
     RouterLinkActive,
     RouterOutlet,
-    DataContainerComponent
+    DataContainerComponent,
+    TecnicaDataContainerComponent
   ],
   templateUrl: './calculadora.component.html',
   styleUrls: ['./calculadora.component.css']
@@ -30,5 +32,6 @@ export class CalculadoraComponent implements AfterViewInit {
   ngAfterViewInit(): void {
       const toast = new Toast(this.errorToast.nativeElement);
       toast.show();
+      this.tab.setCurrentTab("medidas_descriptivas");
   }
 }

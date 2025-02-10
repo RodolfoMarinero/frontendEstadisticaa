@@ -15,11 +15,16 @@ import { EjemplosService } from '../../services/ejemplos.service';
 })
 export class RecolectorDeDatosComponent {
   @ViewChild('listaContainer') listaContainer!: ElementRef;
+  @ViewChild('btnCSV') botonCsv!: ElementRef;
   datosManuales:number[]=[];
   datosDelApi:number[]=[];
   archivo:File|null=null;
   modoSeleccionado: 'csv' | 'api' | 'manual' | null = null
   nuevo:boolean=false;
+
+  editar:boolean=false;
+  muestraAEditar!:Muestra;
+
   txtNuevoDato : FormControl = new FormControl();
   txtNombreMuestra : FormControl = new FormControl();
   constructor(private servicioDataSets : DataSetsService,private ejemplo:EjemplosService) {
@@ -73,6 +78,11 @@ export class RecolectorDeDatosComponent {
     return true;
   }
   agregar():void{
+    if(this.editar){
+      this.servicioDataSets.updateMuestra(this.muestraAEditar.id,this.datosManuales);
+      this.cancelar();
+      return;
+    }
     let muestra:Muestra;
     let id = this.servicioDataSets.siguienteIndice();
     switch(this.modoSeleccionado){
@@ -112,8 +122,10 @@ export class RecolectorDeDatosComponent {
     this.nuevo=true;
   }
   cancelar(){
+    this.txtNombreMuestra.enable();
     this.cambiarFormaDeAgregar();
     this.nuevo=false;
+    this.editar=false;
     this.txtNombreMuestra.setValue("");
   }
   descargarArchivo() {
@@ -121,7 +133,6 @@ export class RecolectorDeDatosComponent {
       alert('No hay archivo para descargar');
       return;
     }
-
     const url = window.URL.createObjectURL(this.archivo);
     const a = document.createElement('a');
     a.href = url;
@@ -148,5 +159,14 @@ export class RecolectorDeDatosComponent {
       const elemento = this.listaContainer.nativeElement;
       elemento.scrollTop = elemento.scrollHeight;
     }
+  }
+  editarMuestra(muestra:Muestra){
+    this.cancelar();
+    this.muestraAEditar=muestra;
+    this.editar=true;
+    this.setModo('manual');
+    this.txtNombreMuestra.setValue(muestra.nombre);
+    this.txtNombreMuestra.disable();
+    this.datosManuales = muestra.datos;  
   }
 }
